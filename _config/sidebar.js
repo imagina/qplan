@@ -9,6 +9,7 @@ export default [
       pages.qplan.categories,
       pages.qplan.plans,
       pages.qplan.limits,
+      pages.qplan.subscriptions,
     ]
   }
 ]

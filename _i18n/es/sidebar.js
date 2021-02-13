@@ -9,7 +9,7 @@ export default {
   adminLimits: 'Límites del Plan',
   createLimits: 'Crear Límite del Plan',
   editLimits: 'Editar Límite del Plan',
-  adminSubscriptions: 'Suscripción',
+  adminSubscriptions: 'Suscripciones',
   createSubscriptions: 'Crear Suscripción',
   editSubscriptions: 'Editar Suscripción',
   adminSubscriptionLimits: 'Límites de Suscripción',

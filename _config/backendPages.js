@@ -44,4 +44,19 @@ export default {
       refresh: true,
     }
   },
+  subscriptions: {
+    permission: 'iplan.subscriptions.manage',
+    activated: true,
+    path: '/subscriptions',
+    name: 'qplan.admin.subscriptions.index',
+    crud: import('../_crud/subscriptions'),
+    page: () => import('@imagina/qcrud/_pages/admin/crudPage'),
+    layout: () => import('@imagina/qsite/_layouts/master.vue'),
+    title: 'qplan.sidebar.adminSubscriptions',
+    icon: 'fas fa-ticket-alt',
+    authenticated: true,
+    subHeader: {
+      refresh: true,
+    }
+  },
 }
