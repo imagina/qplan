@@ -1,0 +1,18 @@
+export default {
+  adminGroup : 'Planes',
+  adminCategories: 'Categorías',
+  createCategories: 'Crear Categoría',
+  editCategories: 'Editar Categoría',
+  adminPlans: 'Planes',
+  createPlans: 'Crear Plan',
+  editPlans: 'Editar Plan',
+  adminLimits: 'Límites del Plan',
+  createLimits: 'Crear Límite del Plan',
+  editLimits: 'Editar Límite del Plan',
+  adminSubscriptions: 'Suscripción',
+  createSubscriptions: 'Crear Suscripción',
+  editSubscriptions: 'Editar Suscripción',
+  adminSubscriptionLimits: 'Límites de Suscripción',
+  createSubscriptionLimits: 'Crear Límite de Suscripción',
+  editSubscriptionLimits: 'Editar Límite de Suscripción',
+}
