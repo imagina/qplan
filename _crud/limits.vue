@@ -11,19 +11,19 @@
       crudData() {
         return {
           crudId: this.crudId,
-          apiRoute: 'apiRoutes.qplan.plans',
+          apiRoute: 'apiRoutes.qplan.limits',
           permission: 'iplan.plans',
-          extraFormFields: 'crud-fields.Iplan.plans',
+          extraFormFields: 'crud-fields.Iplan.limits',
           create: {
-            title: this.$tr('qplan.layout.newPlan'),
+            title: this.$tr('qplan.layout.newLimit'),
           },
           read: {
             columns: [
               {name: 'id', label: this.$tr('ui.form.id'), field: 'id', style: 'width: 50px'},
               {name: 'name', label: this.$tr('ui.form.name'), field: 'name', align: 'rigth'},
               {
-                name: 'category', label: this.$tr('ui.form.category'), field: 'category', align: 'left',
-                format: val => val ? (val.title ? val.title : '-') : '-'
+                name: 'plan', label: this.$tr('qlan.layout.form.plan'), field: 'plan', align: 'left',
+                format: val => val ? (val.name ? val.name : '-') : '-'
               },
               {
                 name: 'created_at', label: this.$tr('ui.form.createdAt'), field: 'createdAt', align: 'left',
@@ -41,23 +41,23 @@
               },
             },
             filters : {
-              category: {
+              plan: {
                 value: null,
                 type: 'treeSelect',
                 loadOptions: {
-                  apiRoute: 'apiRoutes.qplan.categories',
-                  select: {label: 'title', id: 'id'},
+                  apiRoute: 'apiRoutes.qplan.plans',
+                  select: {label: 'name', id: 'id'},
                 },
                 props: {
-                  label: this.$tr('ui.form.category'),
+                  label: this.$tr('qplan.layout.form.plan'),
                   clearable: true
                 }
               },
             }
           },
           update: {
-            title: this.$tr('qplan.layout.updatePlan'),
-            requestParams: {include: 'category'}
+            title: this.$tr('qplan.layout.updateLimit'),
+            requestParams: {include: 'plan'}
           },
           delete: true,
           formLeft: {
@@ -73,43 +73,30 @@
                 ],
               }
             },
-            description: {
-              value: '',
-              type: 'html',
-              isTranslatable: true,
-              props: {
-                label: `${this.$tr('ui.form.description')}*`,
-                rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired')
-                ],
-              }
-            },
           },
           formRight: {
-            frequencyId: {
+            quantity: {
               value: '1',
-              type: 'select',
+              type: 'input',
               isTranslatable: false,
               props: {
-                label: `${this.$tr('qplan.layout.form.frequency')}*`,
-                options: [
-                  {label: this.$tr('ui.label.enabled'), value: '1'},
-                  {label: this.$tr('ui.label.disabled'), value: '0'}
-                ],
+                label: `${this.$tr('qplan.layout.form.quantity')}*`,
+                type: 'number',
+                min: '1',
                 rules: [
                   val => !!val || this.$tr('ui.message.fieldRequired')
                 ],
               }
             },
-            categoryId: {
+            planId: {
               value: '0',
               type: 'treeSelect',
               loadOptions: {
-                apiRoute: 'apiRoutes.qplan.categories',
-                select: {label: 'title', id: 'id'}
+                apiRoute: 'apiRoutes.qplan.plans',
+                select: {label: 'name', id: 'id'}
               },
               props: {
-                label: this.$tr('ui.form.category'),
+                label: this.$tr('qplan.layout.form.plan'),
                 clearable: false,
                 options: [
                   {label: this.$tr('ui.label.disabled'), id: '0'},

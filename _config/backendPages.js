@@ -29,4 +29,19 @@ export default {
       refresh: true,
     }
   },
+  limits: {
+    permission: 'iplan.limits.manage',
+    activated: true,
+    path: '/limits',
+    name: 'qplan.admin.limits.index',
+    crud: import('../_crud/limits'),
+    page: () => import('@imagina/qcrud/_pages/admin/crudPage'),
+    layout: () => import('@imagina/qsite/_layouts/master.vue'),
+    title: 'qplan.sidebar.adminLimits',
+    icon: 'fas fa-ticket-alt',
+    authenticated: true,
+    subHeader: {
+      refresh: true,
+    }
+  },
 }
