@@ -65,7 +65,6 @@
             name: {
               value: '',
               type: 'input',
-              isTranslatable: true,
               props: {
                 label: `${this.$tr('ui.form.name')}*`,
                 rules: [
@@ -76,7 +75,6 @@
             description: {
               value: '',
               type: 'html',
-              isTranslatable: true,
               props: {
                 label: `${this.$tr('ui.form.description')}*`,
                 rules: [
@@ -89,7 +87,6 @@
             frequencyId: {
               value: '1',
               type: 'select',
-              isTranslatable: false,
               props: {
                 label: `${this.$tr('qplan.layout.form.frequency')}*`,
                 options: [
@@ -114,6 +111,19 @@
                 options: [
                   {label: this.$tr('ui.label.disabled'), id: '0'},
                 ],
+              }
+            },
+            limits: {
+              value: [],
+              type: 'select',
+              loadOptions: {
+                apiRoute: 'apiRoutes.qplan.limits',
+                select: {label: 'name', id: 'id'},
+              },
+              props: {
+                label: this.$tr('qplan.layout.form.limit'),
+                multiple: true,
+                clearable: true,
               }
             },
           },

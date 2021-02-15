@@ -4,7 +4,8 @@
   export default {
     data() {
       return {
-        crudId: this.$uid()
+        crudId: this.$uid(),
+        limitEntities: [],
       }
     },
     computed: {
@@ -22,17 +23,12 @@
               {name: 'id', label: this.$tr('ui.form.id'), field: 'id', style: 'width: 50px'},
               {name: 'name', label: this.$tr('ui.form.name'), field: 'name', align: 'rigth'},
               {
-                name: 'plan', label: this.$tr('qlan.layout.form.plan'), field: 'plan', align: 'left',
-                format: val => val ? (val.name ? val.name : '-') : '-'
-              },
-              {
                 name: 'created_at', label: this.$tr('ui.form.createdAt'), field: 'createdAt', align: 'left',
                 format: val => val ? this.$trd(val) : '-',
               },
               {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
             ],
             requestParams: {
-              include: 'category',
               filter: {
                 order: {
                   field: 'created_at',
@@ -40,24 +36,9 @@
                 },
               },
             },
-            filters : {
-              plan: {
-                value: null,
-                type: 'treeSelect',
-                loadOptions: {
-                  apiRoute: 'apiRoutes.qplan.plans',
-                  select: {label: 'name', id: 'id'},
-                },
-                props: {
-                  label: this.$tr('qplan.layout.form.plan'),
-                  clearable: true
-                }
-              },
-            }
           },
           update: {
             title: this.$tr('qplan.layout.updateLimit'),
-            requestParams: {include: 'plan'}
           },
           delete: true,
           formLeft: {
@@ -65,7 +46,6 @@
             name: {
               value: '',
               type: 'input',
-              isTranslatable: true,
               props: {
                 label: `${this.$tr('ui.form.name')}*`,
                 rules: [
@@ -73,12 +53,9 @@
                 ],
               }
             },
-          },
-          formRight: {
             quantity: {
               value: '1',
               type: 'input',
-              isTranslatable: false,
               props: {
                 label: `${this.$tr('qplan.layout.form.quantity')}*`,
                 type: 'number',
@@ -88,19 +65,31 @@
                 ],
               }
             },
-            planId: {
-              value: '0',
-              type: 'treeSelect',
-              loadOptions: {
-                apiRoute: 'apiRoutes.qplan.plans',
-                select: {label: 'name', id: 'id'}
-              },
+            entity: {
+              value: '',
+              type: 'select',
               props: {
-                label: this.$tr('qplan.layout.form.plan'),
+                label: `${this.$tr('qplan.layout.form.entity')}*`,
                 clearable: false,
-                options: [
-                  {label: this.$tr('ui.label.disabled'), id: '0'},
-                ],
+                options: this.entitiesOptions,
+              }
+            },
+            attribute: {
+              value: '',
+              type: 'select',
+              props: {
+                label: `${this.$tr('qplan.layout.form.attribute')}`,
+                options: this.attributeOptions,
+                vIf: this.attributeOptions.length,
+              }
+            },
+            attributeValue: {
+              value: '',
+              type: 'select',
+              props: {
+                label: `${this.$tr('qplan.layout.form.attributeValue')}`,
+                options: this.attributeValueOptions,
+                vIf: this.attributeValueOptions.length,
               }
             },
           },
@@ -109,6 +98,45 @@
       //Crud info
       crudInfo() {
         return this.$store.state.qcrudComponent.component[this.crudId] || {}
+      },
+      attributeValueOptions(){
+        if(!this.crudInfo.attribute) return []
+        let selectedEnt = this.$array.findByTag(this.limitEntities,'entity',this.crudInfo.entity)
+        let selectedAttr = this.$array.findByTag(selectedEnt.attributes,'value',this.crudInfo.attribute)
+        return selectedAttr.options
+      },
+      attributeOptions(){
+        if(!this.crudInfo.entity) return []
+        let selectedEnt = this.$array.findByTag(this.limitEntities,'entity',this.crudInfo.entity)
+        return selectedEnt.attributes
+      },
+      entitiesOptions(){
+        return this.$array.select(this.limitEntities,{id: 'entity',label: 'name'})
+      }
+    },
+    mounted(){
+      this.getLimitEntities()
+    },
+    methods: {
+      getLimitEntities(){
+        return new Promise((resolve, reject) => {
+          let configName = 'apiRoutes.qplan.limitEntities'
+          //Params
+          let params = {
+            refresh: true,
+            params: {
+              filter: {allTranslations: true}
+            }
+          }
+          //Request
+          this.$crud.index(configName, params).then(response => {
+            this.limitEntities = response.data
+            resolve(true)//Resolve
+          }).catch(error => {
+            this.$alert.error({message: this.$tr('ui.message.errorRequest'), pos: 'bottom'})
+            reject(false)//Resolve
+          })
+        })
       }
     }
   }

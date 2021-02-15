@@ -44,6 +44,36 @@ export default {
       refresh: true,
     }
   },
+  limitsCreate: {
+    permission: 'iplan.limits.create',
+    activated: true,
+    path: '/limits/create',
+    name: 'qplan.admin.limits.create',
+    page: () => import('../_pages/admin/limits/form'),
+    layout: () => import('@imagina/qsite/_layouts/master.vue'),
+    title: 'qplan.sidebar.createLimits',
+    icon: 'fas fa-ticket-alt',
+    authenticated: true,
+    subHeader: {
+      refresh: true,
+      breadcrumb: ['qplan.limits']
+    }
+  },
+  limitsEdit: {
+    permission: 'iplan.limits.edit',
+    activated: true,
+    path: '/limits/:id',
+    name: 'qplan.admin.limits.edit',
+    page: () => import('../_pages/admin/limits/form'),
+    layout: () => import('@imagina/qsite/_layouts/master.vue'),
+    title: 'qplan.sidebar.editLimits',
+    icon: 'fas fa-ticket-alt',
+    authenticated: true,
+    subHeader: {
+      refresh: true,
+      breadcrumb: ['qplan.limits']
+    }
+  },
   subscriptions: {
     permission: 'iplan.subscriptions.manage',
     activated: true,
@@ -53,6 +83,21 @@ export default {
     page: () => import('@imagina/qcrud/_pages/admin/crudPage'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     title: 'qplan.sidebar.adminSubscriptions',
+    icon: 'fas fa-ticket-alt',
+    authenticated: true,
+    subHeader: {
+      refresh: true,
+    }
+  },
+  subscriptionLimits: {
+    permission: 'iplan.subscriptionlimits.manage',
+    activated: true,
+    path: '/subscriptionLimits',
+    name: 'qplan.admin.subscriptionLimits.index',
+    crud: import('../_crud/subscriptionLimits'),
+    page: () => import('@imagina/qcrud/_pages/admin/crudPage'),
+    layout: () => import('@imagina/qsite/_layouts/master.vue'),
+    title: 'qplan.sidebar.adminSubscriptionLimits',
     icon: 'fas fa-ticket-alt',
     authenticated: true,
     subHeader: {

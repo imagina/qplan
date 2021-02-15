@@ -69,7 +69,6 @@
             title: {
               value: '',
               type: 'input',
-              isTranslatable: true,
               props: {
                 label: `${this.$tr('ui.form.title')}*`,
                 rules: [
@@ -80,7 +79,6 @@
             slug: {
               value: '',
               type: 'input',
-              isTranslatable: true,
               props: {
                 label: `${this.$tr('ui.form.slug')}*`,
                 rules: [
@@ -91,7 +89,6 @@
             description: {
               value: '',
               type: 'html',
-              isTranslatable: true,
               props: {
                 label: `${this.$tr('ui.form.description')}*`,
                 rules: [
@@ -104,7 +101,6 @@
             status: {
               value: '1',
               type: 'select',
-              isTranslatable: false,
               props: {
                 label: `${this.$tr('ui.form.status')}*`,
                 options: [

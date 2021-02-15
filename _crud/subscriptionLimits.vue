@@ -11,11 +11,11 @@
       crudData() {
         return {
           crudId: this.crudId,
-          apiRoute: 'apiRoutes.qplan.subscriptions',
-          permission: 'iplan.subscriptions',
-          extraFormFields: 'crud-fields.Iplan.subscriptions',
+          apiRoute: 'apiRoutes.qplan.subscriptionLimits',
+          permission: 'iplan.subscriptionLimits',
+          extraFormFields: 'crud-fields.Iplan.subscriptionLimits',
           create: {
-            title: this.$tr('qplan.layout.newSubscription'),
+            title: this.$tr('qplan.layout.newsubscriptionLimit'),
           },
           read: {
             columns: [
@@ -28,7 +28,6 @@
               {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
             ],
             requestParams: {
-              include: 'category',
               filter: {
                 order: {
                   field: 'created_at',
@@ -38,7 +37,7 @@
             },
           },
           update: {
-            title: this.$tr('qplan.layout.updateSubscription'),
+            title: this.$tr('qplan.layout.updatesubscriptionLimit'),
             requestParams: {include: 'category'}
           },
           delete: true,
@@ -68,28 +67,22 @@
             },
           },
           formRight: {
-            categoryName: {
-              value: '',
-              type: 'input',
-              isTranslatable: true,
-              props: {
-                label: `${this.$tr('qplan.layout.form.category')}*`,
-                rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired')
-                ],
-              }
-            },
-            frequency: {
+            quantity: {
               value: '',
               type: 'input',
               isTranslatable: false,
               props: {
-                label: `${this.$tr('qplan.layout.form.frequency')}*`,
+                type: 'number',
+                min: '1',
+                label: `${this.$tr('qplan.layout.form.quantity')}*`,
                 rules: [
                   val => !!val || this.$tr('ui.message.fieldRequired')
                 ],
               }
             },
+            quantityUsed:{
+              value: 0,
+            }
           },
         }
       },

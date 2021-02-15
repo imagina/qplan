@@ -10,6 +10,7 @@ export default [
       pages.qplan.plans,
       pages.qplan.limits,
       pages.qplan.subscriptions,
+      pages.qplan.subscriptionLimits,
     ]
   }
 ]

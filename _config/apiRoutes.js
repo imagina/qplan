@@ -9,6 +9,7 @@ export default {
   categories: `${urlBase}/categories`,
   plans: `${urlBase}/plans`,
   limits: `${urlBase}/limits`,
+  limitEntities: `${urlBase}/limits/entities`,
   subscriptions: `${urlBase}/subscriptions`,
   subscriptionLimits: `${urlBase}/subscription-limits`,
 }

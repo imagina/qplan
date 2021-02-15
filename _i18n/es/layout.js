@@ -13,6 +13,7 @@ export default {
   form : {
     category: 'Categoría',
     plan: 'Plan',
+    limit: 'Límites',
     subscription: 'Suscripción',
     frequency: 'Frecuencia',
     startDate: 'Desde',
