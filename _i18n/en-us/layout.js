@@ -3,12 +3,15 @@ export default {
   updateCategory: 'Actualizar Categoría',
   newPlan: 'Nuevo Plan',
   updatePlan: 'Actualizar Plan',
+  newEntityPlan: 'Nueva Entidad del Plan',
+  updateEntityPlan: 'Actualizar Entidad del Plan',
   newLimit: 'Nuevo Límite',
   updateLimit: 'Actualizar Límite',
   newSubscription: 'Nueva Suscripción',
   updateSubscription: 'Actualizar Suscripción',
   newSubscriptionLimit: 'Nuevo Límite de Suscripción',
   updateSubscriptionLimit: 'Actualizar Límite de Suscripción',
+  backToSubscriptions: 'Atrás a Suscripciones',
 
   form : {
     category: 'Categoría',
@@ -21,6 +24,7 @@ export default {
     quantity: 'Cantidad',
     quantityUsed: 'Cantidad Usada',
     entity: 'Entidad',
+    entityName: 'Asignado a',
     attribute: 'Atributo',
     attributeValue: 'Valor del Atributo',
     module: 'Módulo',

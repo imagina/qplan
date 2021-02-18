@@ -57,7 +57,7 @@
           },
           update: {
             title: this.$tr('qplan.layout.updatePlan'),
-            requestParams: {include: 'category'}
+            requestParams: {include: 'category,limits'}
           },
           delete: true,
           formLeft: {
@@ -74,8 +74,9 @@
             },
             description: {
               value: '',
-              type: 'html',
+              type: 'input',
               props: {
+                type: 'textarea',
                 label: `${this.$tr('ui.form.description')}*`,
                 rules: [
                   val => !!val || this.$tr('ui.message.fieldRequired')
@@ -85,14 +86,14 @@
           },
           formRight: {
             frequencyId: {
-              value: '1',
+              value: '',
               type: 'select',
+              loadOptions: {
+                apiRoute: 'apiRoutes.qplan.frequencies',
+                select: {label: 'title', id: 'id'},
+              },
               props: {
                 label: `${this.$tr('qplan.layout.form.frequency')}*`,
-                options: [
-                  {label: this.$tr('ui.label.enabled'), value: '1'},
-                  {label: this.$tr('ui.label.disabled'), value: '0'}
-                ],
                 rules: [
                   val => !!val || this.$tr('ui.message.fieldRequired')
                 ],
@@ -100,30 +101,44 @@
             },
             categoryId: {
               value: '0',
-              type: 'treeSelect',
-              loadOptions: {
-                apiRoute: 'apiRoutes.qplan.categories',
-                select: {label: 'title', id: 'id'}
-              },
+              type: 'crud',
               props: {
-                label: this.$tr('ui.form.category'),
-                clearable: false,
-                options: [
-                  {label: this.$tr('ui.label.disabled'), id: '0'},
-                ],
+                crudData: import('../_crud/planCategories'),
+                config:{
+                  options:{
+                    label: 'title', value: 'id'
+                  }
+                },
+                crudType: 'select',
+                crudProps:{
+                  label: this.$tr('ui.form.category'),
+                  clearable: false,
+                  options: [
+                    {label: this.$tr('ui.label.disabled'), id: '0'},
+                  ],
+                },
               }
             },
             limits: {
               value: [],
-              type: 'select',
-              loadOptions: {
-                apiRoute: 'apiRoutes.qplan.limits',
-                select: {label: 'name', id: 'id'},
-              },
+              type: 'crud',
               props: {
-                label: this.$tr('qplan.layout.form.limit'),
-                multiple: true,
-                clearable: true,
+                crudType: 'select',
+                crudData: import('../_crud/limits'),
+                config:{
+                  options:{
+                    label: 'name', value: 'id'
+                  }
+                },
+                crudProps:{
+                  label: this.$tr('qplan.layout.form.limit'),
+                  multiple: true,
+                  clearable: true,
+                  emitValue: true,
+                  mapOptions: true,
+                  useChips: true,
+                  rules: [ val => val.length || this.$tr('ui.message.fieldRequired') ]
+                }
               }
             },
           },

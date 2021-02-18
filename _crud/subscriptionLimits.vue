@@ -1,95 +1,96 @@
 <template></template>
 
 <script>
-  export default {
-    data() {
+export default {
+  data() {
+    return {
+      crudId: this.$uid(),
+      limitEntities: [],
+    }
+  },
+  computed: {
+    crudData() {
       return {
-        crudId: this.$uid()
-      }
-    },
-    computed: {
-      crudData() {
-        return {
-          crudId: this.crudId,
-          apiRoute: 'apiRoutes.qplan.subscriptionLimits',
-          permission: 'iplan.subscriptionLimits',
-          extraFormFields: 'crud-fields.Iplan.subscriptionLimits',
-          create: {
-            title: this.$tr('qplan.layout.newsubscriptionLimit'),
-          },
-          read: {
-            columns: [
-              {name: 'id', label: this.$tr('ui.form.id'), field: 'id', style: 'width: 50px'},
-              {name: 'name', label: this.$tr('ui.form.name'), field: 'name', align: 'rigth'},
-              {
-                name: 'created_at', label: this.$tr('ui.form.createdAt'), field: 'createdAt', align: 'left',
-                format: val => val ? this.$trd(val) : '-',
-              },
-              {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
-            ],
-            requestParams: {
-              filter: {
-                order: {
-                  field: 'created_at',
-                  way: 'desc',
-                },
+        crudId: this.crudId,
+        apiRoute: 'apiRoutes.qplan.subscriptionLimits',
+        permission: 'iplan.subscriptionlimits',
+        extraFormFields: 'crud-fields.Iplan.subscriptionLimits',
+        create: false,
+        read: {
+          columns: [
+            {name: 'id', label: this.$tr('ui.form.id'), field: 'id', style: 'width: 50px'},
+            {name: 'name', label: this.$tr('ui.form.name'), field: 'name', align: 'left'},
+            {
+              name: 'created_at', label: this.$tr('ui.form.createdAt'), field: 'createdAt', align: 'left',
+              format: val => val ? this.$trd(val) : '-',
+            },
+            {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
+          ],
+          requestParams: {
+            filter: {
+              order: {
+                field: 'created_at',
+                way: 'desc',
               },
             },
           },
-          update: {
-            title: this.$tr('qplan.layout.updatesubscriptionLimit'),
-            requestParams: {include: 'category'}
-          },
-          delete: true,
-          formLeft: {
-            id: {value: ''},
-            name: {
-              value: '',
-              type: 'input',
-              isTranslatable: true,
-              props: {
-                label: `${this.$tr('ui.form.name')}*`,
-                rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired')
-                ],
-              }
-            },
-            description: {
-              value: '',
-              type: 'html',
-              isTranslatable: true,
-              props: {
-                label: `${this.$tr('ui.form.description')}*`,
-                rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired')
-                ],
-              }
-            },
-          },
-          formRight: {
-            quantity: {
-              value: '',
-              type: 'input',
-              isTranslatable: false,
-              props: {
-                type: 'number',
-                min: '1',
-                label: `${this.$tr('qplan.layout.form.quantity')}*`,
-                rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired')
-                ],
-              }
-            },
-            quantityUsed:{
-              value: 0,
+        },
+        update: {
+          title: this.$tr('qplan.layout.updateSubscriptionLimit'),
+        },
+        formLeft: {
+          id: {value: ''},
+          name: {
+            value: '',
+            type: 'input',
+            props: {
+              readonly: true,
+              label: `${this.$tr('ui.form.name')}*`,
+              rules: [
+                val => !!val || this.$tr('ui.message.fieldRequired')
+              ],
             }
           },
-        }
-      },
-      //Crud info
-      crudInfo() {
-        return this.$store.state.qcrudComponent.component[this.crudId] || {}
+          quantity: {
+            value: '1',
+            type: 'input',
+            props: {
+              label: `${this.$tr('qplan.layout.form.quantity')}*`,
+              type: 'number',
+              min: '1',
+              rules: [
+                val => !!val || this.$tr('ui.message.fieldRequired')
+              ],
+            }
+          },
+          quantityUsed: {
+            value: '0',
+            type: 'input',
+            props: {
+              label: `${this.$tr('qplan.layout.form.quantityUsed')}*`,
+              type: 'number',
+              min: '0',
+              rules: [
+                val => val >= 0 || this.$tr('ui.message.fieldRequired')
+              ],
+            }
+          },
+          entity: {
+            value: '',
+          },
+          attribute: {
+            value: '',
+          },
+          attributeValue: {
+            value: '',
+          },
+        },
       }
-    }
-  }
+    },
+    //Crud info
+    crudInfo() {
+      return this.$store.state.qcrudComponent.component[this.crudId] || {}
+    },
+  },
+}
 </script>

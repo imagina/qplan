@@ -8,8 +8,12 @@ export default {
   version: moduleVersion,
   categories: `${urlBase}/categories`,
   plans: `${urlBase}/plans`,
+  planModules: `${urlBase}/plans/modules`,
+  entityPlans: `${urlBase}/entity-plans`,
+  frequencies: `${urlBase}/plans/frequencies`,
   limits: `${urlBase}/limits`,
   limitEntities: `${urlBase}/limits/entities`,
   subscriptions: `${urlBase}/subscriptions`,
+  subscriptionEntities: `${urlBase}/subscriptions/entities`,
   subscriptionLimits: `${urlBase}/subscription-limits`,
 }

@@ -13,7 +13,7 @@
         return {
           crudId: this.crudId,
           apiRoute: 'apiRoutes.qplan.limits',
-          permission: 'iplan.plans',
+          permission: 'iplan.limits',
           extraFormFields: 'crud-fields.Iplan.limits',
           create: {
             title: this.$tr('qplan.layout.newLimit'),

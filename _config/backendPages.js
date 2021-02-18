@@ -8,7 +8,7 @@ export default {
     page: () => import('@imagina/qcrud/_pages/admin/crudPage'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     title: 'qplan.sidebar.adminCategories',
-    icon: 'fas fa-ticket-alt',
+    icon: 'fas fa-layer-group',
     authenticated: true,
     subHeader:{
       refresh: true,
@@ -23,7 +23,22 @@ export default {
     page: () => import('@imagina/qcrud/_pages/admin/crudPage'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     title: 'qplan.sidebar.adminPlans',
-    icon: 'fas fa-ticket-alt',
+    icon: 'fas fa-money-check-alt',
+    authenticated: true,
+    subHeader:{
+      refresh: true,
+    }
+  },
+  entityPlans: {
+    permission: 'iplan.entityplans.manage',
+    activated: true,
+    path: '/entityPlans',
+    name: 'qplan.admin.entityPlans.index',
+    crud: import('../_crud/entityPlans'),
+    page: () => import('@imagina/qcrud/_pages/admin/crudPage'),
+    layout: () => import('@imagina/qsite/_layouts/master.vue'),
+    title: 'qplan.sidebar.adminEntityPlans',
+    icon: 'fas fa-boxes',
     authenticated: true,
     subHeader:{
       refresh: true,
@@ -38,40 +53,10 @@ export default {
     page: () => import('@imagina/qcrud/_pages/admin/crudPage'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     title: 'qplan.sidebar.adminLimits',
-    icon: 'fas fa-ticket-alt',
+    icon: 'fas fa-user-shield',
     authenticated: true,
     subHeader: {
       refresh: true,
-    }
-  },
-  limitsCreate: {
-    permission: 'iplan.limits.create',
-    activated: true,
-    path: '/limits/create',
-    name: 'qplan.admin.limits.create',
-    page: () => import('../_pages/admin/limits/form'),
-    layout: () => import('@imagina/qsite/_layouts/master.vue'),
-    title: 'qplan.sidebar.createLimits',
-    icon: 'fas fa-ticket-alt',
-    authenticated: true,
-    subHeader: {
-      refresh: true,
-      breadcrumb: ['qplan.limits']
-    }
-  },
-  limitsEdit: {
-    permission: 'iplan.limits.edit',
-    activated: true,
-    path: '/limits/:id',
-    name: 'qplan.admin.limits.edit',
-    page: () => import('../_pages/admin/limits/form'),
-    layout: () => import('@imagina/qsite/_layouts/master.vue'),
-    title: 'qplan.sidebar.editLimits',
-    icon: 'fas fa-ticket-alt',
-    authenticated: true,
-    subHeader: {
-      refresh: true,
-      breadcrumb: ['qplan.limits']
     }
   },
   subscriptions: {
@@ -83,25 +68,25 @@ export default {
     page: () => import('@imagina/qcrud/_pages/admin/crudPage'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     title: 'qplan.sidebar.adminSubscriptions',
-    icon: 'fas fa-ticket-alt',
+    icon: 'fas fa-user-tag',
     authenticated: true,
     subHeader: {
       refresh: true,
     }
   },
-  subscriptionLimits: {
-    permission: 'iplan.subscriptionlimits.manage',
+  subscriptionsEdit: {
+    permission: 'iplan.subscriptions.edit',
     activated: true,
-    path: '/subscriptionLimits',
-    name: 'qplan.admin.subscriptionLimits.index',
-    crud: import('../_crud/subscriptionLimits'),
-    page: () => import('@imagina/qcrud/_pages/admin/crudPage'),
+    path: '/subscriptions/:id',
+    name: 'qplan.admin.subscriptions.edit',
+    page: () => import('../_pages/admin/subscriptions/form'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
-    title: 'qplan.sidebar.adminSubscriptionLimits',
+    title: 'qplan.sidebar.editSubscriptions',
     icon: 'fas fa-ticket-alt',
     authenticated: true,
     subHeader: {
       refresh: true,
+      breadcrumbs:[ 'qplan.subscriptions' ]
     }
   },
 }

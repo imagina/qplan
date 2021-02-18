@@ -4,13 +4,13 @@ const pages = config('pages') // Get Pages from config
 export default [
   {
     title: 'qplan.sidebar.adminGroup',
-    icon: 'fas fa-ticket-alt',
+    icon: 'fas fa-money-check-alt',
     children: [
-      pages.qplan.categories,
-      pages.qplan.plans,
-      pages.qplan.limits,
       pages.qplan.subscriptions,
-      pages.qplan.subscriptionLimits,
+      pages.qplan.plans,
+      pages.qplan.entityPlans,
+      pages.qplan.limits,
+      pages.qplan.categories,
     ]
   }
 ]

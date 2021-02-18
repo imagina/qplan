@@ -4,7 +4,7 @@
   export default {
     data() {
       return {
-        crudId: this.$uid()
+        crudId: this.$uid(),
       }
     },
     computed: {
@@ -20,7 +20,16 @@
           read: {
             columns: [
               {name: 'id', label: this.$tr('ui.form.id'), field: 'id', style: 'width: 50px'},
-              {name: 'name', label: this.$tr('ui.form.name'), field: 'name', align: 'rigth'},
+              {name: 'name', label: this.$tr('ui.form.name'), field: 'name', align: 'right'},
+              {name: 'entityName', label: this.$tr('qplan.layout.form.entityName'), field: 'entityName', align: 'right'},
+              {
+                name: 'start_date', label: this.$tr('qplan.layout.form.startDate'), field: 'startDate', align: 'left',
+                format: val => val ? this.$trd(val) : '-',
+              },
+              {
+                name: 'end_date', label: this.$tr('qplan.layout.form.endDate'), field: 'endDate', align: 'left',
+                format: val => val ? this.$trd(val) : '-',
+              },
               {
                 name: 'created_at', label: this.$tr('ui.form.createdAt'), field: 'createdAt', align: 'left',
                 format: val => val ? this.$trd(val) : '-',
@@ -28,7 +37,6 @@
               {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
             ],
             requestParams: {
-              include: 'category',
               filter: {
                 order: {
                   field: 'created_at',
@@ -39,55 +47,43 @@
           },
           update: {
             title: this.$tr('qplan.layout.updateSubscription'),
-            requestParams: {include: 'category'}
+            to: 'qplan.admin.subscriptions.edit',
           },
           delete: true,
           formLeft: {
-            id: {value: ''},
-            name: {
+            entity: {value: 'Modules\\User\\Entities\\Sentinel\\User'},
+            entityId:{
               value: '',
-              type: 'input',
-              isTranslatable: true,
+              type: 'crud',
               props: {
-                label: `${this.$tr('ui.form.name')}*`,
-                rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired')
-                ],
+                crudData: import('@imagina/quser/_crud/users'),
+                config:{
+                  options:{
+                    label: 'fullName', value: 'id'
+                  }
+                },
+                crudType: 'select',
+                crudProps:{
+                  label: this.$tr('ui.label.user'),
+                  clearable: false,
+                },
               }
             },
-            description: {
+            planId:{
               value: '',
-              type: 'html',
-              isTranslatable: true,
+              type: 'crud',
               props: {
-                label: `${this.$tr('ui.form.description')}*`,
-                rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired')
-                ],
-              }
-            },
-          },
-          formRight: {
-            categoryName: {
-              value: '',
-              type: 'input',
-              isTranslatable: true,
-              props: {
-                label: `${this.$tr('qplan.layout.form.category')}*`,
-                rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired')
-                ],
-              }
-            },
-            frequency: {
-              value: '',
-              type: 'input',
-              isTranslatable: false,
-              props: {
-                label: `${this.$tr('qplan.layout.form.frequency')}*`,
-                rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired')
-                ],
+                crudData: import('../_crud/plans'),
+                config:{
+                  options:{
+                    label: 'name', value: 'id'
+                  }
+                },
+                crudType: 'select',
+                crudProps:{
+                  label: this.$tr('qplan.layout.form.plan'),
+                  clearable: false,
+                },
               }
             },
           },
@@ -96,7 +92,7 @@
       //Crud info
       crudInfo() {
         return this.$store.state.qcrudComponent.component[this.crudId] || {}
-      }
-    }
+      },
+    },
   }
 </script>
