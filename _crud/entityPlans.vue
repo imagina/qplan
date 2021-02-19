@@ -22,6 +22,7 @@
             columns: [
               {name: 'id', label: this.$tr('ui.form.id'), field: 'id', style: 'width: 50px'},
               {name: 'module', label: this.$tr('qplan.layout.form.module'), field: 'module'},
+              {name: 'entityName', label: this.$tr('qplan.layout.form.entity'), field: 'entityName'},
               {
                 name: 'status', label: this.$tr('ui.form.status'), field: 'status'
               },
