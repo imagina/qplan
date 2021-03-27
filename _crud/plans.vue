@@ -4,7 +4,8 @@
   export default {
     data() {
       return {
-        crudId: this.$uid()
+        crudId: this.$uid(),
+        products: [],
       }
     },
     computed: {
@@ -24,6 +25,10 @@
               {
                 name: 'category', label: this.$tr('ui.form.category'), field: 'category', align: 'left',
                 format: val => val ? (val.title ? val.title : '-') : '-'
+              },
+              {
+                name: 'product', label: this.$tr('ui.label.product'), field: 'product', align: 'left',
+                format: val => val ? (val.name ? val.name : '-') : '-'
               },
               {
                 name: 'created_at', label: this.$tr('ui.form.createdAt'), field: 'createdAt', align: 'left',
@@ -57,7 +62,7 @@
           },
           update: {
             title: this.$tr('qplan.layout.updatePlan'),
-            requestParams: {include: 'category,limits'}
+            requestParams: {include: 'category,limits,product'}
           },
           delete: true,
           formLeft: {
@@ -104,11 +109,6 @@
               type: 'crud',
               props: {
                 crudData: import('../_crud/planCategories'),
-                config:{
-                  options:{
-                    label: 'title', value: 'id'
-                  }
-                },
                 crudType: 'select',
                 crudProps:{
                   label: this.$tr('ui.form.category'),
@@ -141,12 +141,58 @@
                 }
               }
             },
+            productId: {
+              value: '',
+              type: 'select',
+              props: {
+                vIf: this.productOptions.length > 0,
+                label: this.$tr('ui.label.product'),
+                clearable: false,
+                options: this.productOptions
+              }
+            },
           },
         }
       },
       //Crud info
       crudInfo() {
         return this.$store.state.qcrudComponent.component[this.crudId] || {}
+      },
+      crudInfoId(){
+        return this.crudInfo ? (this.crudInfo.id? this.crudInfo.id : 0) : 0
+      },
+      productOptions(){
+        return this.$array.select(this.products,{id: 'id',label: 'name'})
+      }
+    },
+    watch: {
+      'crudInfoId'(){
+        this.getProductOptions()
+      }
+    },
+    methods:{
+      getProductOptions(){
+        return new Promise((resolve, reject) => {
+          let configName = 'apiRoutes.qcommerce.products'
+          //Params
+          let params = {
+            refresh: true,
+            params: {
+              filter: {
+                allTranslations: true,
+                entityId: this.crudInfo.id
+              }
+            }
+          }
+          //Request
+          this.$crud.index(configName, params).then(response => {
+            this.products = response.data
+            resolve(true)//Resolve
+          }).catch(error => {
+            this.$alert.error({message: this.$tr('ui.message.errorRequest'), pos: 'bottom'})
+            reject(false)//Resolve
+          })
+        })
       }
     }
   }
