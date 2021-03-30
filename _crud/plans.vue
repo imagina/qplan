@@ -79,9 +79,8 @@
             },
             description: {
               value: '',
-              type: 'input',
+              type: 'html',
               props: {
-                type: 'textarea',
                 label: `${this.$tr('ui.form.description')}*`,
                 rules: [
                   val => !!val || this.$tr('ui.message.fieldRequired')
@@ -134,8 +133,6 @@
                   label: this.$tr('qplan.layout.form.limit'),
                   multiple: true,
                   clearable: true,
-                  emitValue: true,
-                  mapOptions: true,
                   useChips: true,
                   rules: [ val => val.length || this.$tr('ui.message.fieldRequired') ]
                 }
@@ -147,7 +144,7 @@
               props: {
                 vIf: this.productOptions.length > 0,
                 label: this.$tr('ui.label.product'),
-                clearable: false,
+                clearable: true,
                 options: this.productOptions
               }
             },
