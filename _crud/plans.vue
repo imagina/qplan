@@ -31,6 +31,10 @@
                 format: val => val ? (val.name ? val.name : '-') : '-'
               },
               {
+                name: 'price', label: this.$tr('ui.label.price'), field: 'product', align: 'left',
+                format: val => val ? (val.price ? this.$trc(val.price) : '-') : '-'
+              },
+              {
                 name: 'created_at', label: this.$tr('ui.form.createdAt'), field: 'createdAt', align: 'left',
                 format: val => val ? this.$trd(val) : '-',
               },
