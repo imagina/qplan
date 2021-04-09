@@ -14,7 +14,7 @@ export default {
         crudId: this.crudId,
         apiRoute: 'apiRoutes.qplan.subscriptionLimits',
         permission: 'iplan.subscriptionlimits',
-        extraFormFields: 'crud-fields.Iplan.subscriptionLimits',
+        extraFormFields: 'Iplan.crud-fields.subscriptionLimits',
         create: false,
         read: {
           columns: [

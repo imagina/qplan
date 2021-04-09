@@ -13,7 +13,7 @@
           crudId: this.crudId,
           apiRoute: 'apiRoutes.qplan.subscriptions',
           permission: 'iplan.subscriptions',
-          extraFormFields: 'crud-fields.Iplan.subscriptions',
+          extraFormFields: 'Iplan.crud-fields.subscriptions',
           create: {
             title: this.$tr('qplan.layout.newSubscription'),
           },

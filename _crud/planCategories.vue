@@ -13,7 +13,7 @@
           crudId: this.crudId,
           apiRoute: 'apiRoutes.qplan.categories',
           permission: 'iplan.categories',
-          extraFormFields: 'crud-fields.Iplan.categories',
+          extraFormFields: 'Iplan.crud-fields.categories',
           create: {
             title: this.$tr('qplan.layout.newCategory'),
           },

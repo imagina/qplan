@@ -14,7 +14,7 @@
           crudId: this.crudId,
           apiRoute: 'apiRoutes.qplan.entityPlans',
           permission: 'iplan.entityplans',
-          extraFormFields: 'crud-fields.Iplan.entityPlans',
+          extraFormFields: 'Iplan.crud-fields.entityPlans',
           create: {
             title: this.$tr('qplan.layout.newEntityPlan'),
           },
