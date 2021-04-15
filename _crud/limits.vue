@@ -3,7 +3,9 @@
 <script>
 export default {
   mounted() {
-    this.getLimitEntities()
+    this.$nextTick(function () {
+      this.getLimitEntities()
+    })
   },
   data() {
     return {
@@ -72,13 +74,14 @@ export default {
               label: `${this.$tr('qplan.layout.form.attribute')}`,
               options: this.attributeOptions,
               vIf: this.attributeOptions.length,
+              clearable: true
             }
           },
           attributeValue: {
             value: '',
             type: 'select',
             props: {
-              label: `${this.$tr('qplan.layout.form.attributeValue')}`,
+              label: `${this.$tr('qplan.layout.form.attributeValue')}*`,
               options: this.attributeValueOptions,
               vIf: this.attributeValueOptions.length,
             }
@@ -120,18 +123,29 @@ export default {
   methods: {
     getLimitEntities() {
       return new Promise((resolve, reject) => {
-        let configName = 'apiRoutes.qplan.limitEntities'
         //Params
-        let params = {
+        let requestParams = {
           refresh: true,
           params: {
-            filter: {allTranslations: true}
+            filter: {allTranslations: true, configNameByModule: 'config.limitableEntities'}
           }
         }
         //Request
-        this.$crud.index(configName, params).then(response => {
-          console.warn(response.data)
-          this.limitEntities = response.data
+        this.$crud.index('apiRoutes.qsite.configs', requestParams).then(response => {
+          if (response.data) {
+            //Merge all entities
+            let limitEntities = []
+            Object.values(response.data).forEach(item => {
+              if (item) {
+                item.forEach(limitableEntity => {
+                  if (limitableEntity && limitableEntity.status) limitEntities.push(limitableEntity)
+                })
+              }
+            })
+            //Set entities
+
+            this.limitEntities = limitEntities
+          }
           resolve(true)//Resolve
         }).catch(error => {
           this.$alert.error({message: this.$tr('ui.message.errorRequest'), pos: 'bottom'})

@@ -108,16 +108,19 @@ export default {
             }
           },
           categoryId: {
-            value: '0',
+            value: null,
             type: 'crud',
             props: {
               crudData: import('../_crud/planCategories'),
               crudType: 'select',
               crudProps: {
-                label: this.$tr('ui.form.category'),
+                label: `${this.$tr('ui.form.category')}*`,
                 clearable: false,
                 options: [
                   {label: this.$tr('ui.label.disabled'), id: '0'},
+                ],
+                rules: [
+                  val => !!val || this.$tr('ui.message.fieldRequired')
                 ],
               },
             }
@@ -134,9 +137,8 @@ export default {
                 }
               },
               crudProps: {
-                label: this.$tr('qplan.layout.form.limit'),
+                label: `${this.$tr('qplan.layout.form.limit')}*`,
                 multiple: true,
-                clearable: true,
                 useChips: true,
                 rules: [val => val.length || this.$tr('ui.message.fieldRequired')]
               }
@@ -174,9 +176,8 @@ export default {
   methods: {
     getProductOptions() {
       return new Promise((resolve, reject) => {
-        let configName = 'apiRoutes.qcommerce.products'
         //Params
-        let params = {
+        let requestParams = {
           refresh: true,
           params: {
             filter: {
@@ -186,7 +187,7 @@ export default {
           }
         }
         //Request
-        this.$crud.index(configName, params).then(response => {
+        this.$crud.index('apiRoutes.qcommerce.products', requestParams).then(response => {
           this.products = response.data
           resolve(true)//Resolve
         }).catch(error => {

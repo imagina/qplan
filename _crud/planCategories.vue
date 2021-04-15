@@ -113,7 +113,7 @@
               }
             },
             parentId: {
-              value: '0',
+              value: null,
               type: 'treeSelect',
               loadOptions: {
                 apiRoute: 'apiRoutes.qplan.categories',
@@ -121,10 +121,7 @@
               },
               props: {
                 label: this.$tr('ui.form.parent'),
-                clearable: false,
-                options: [
-                  {label: this.$tr('ui.label.disabled'), id: '0'},
-                ],
+                clearable: true,
               }
             },
           },

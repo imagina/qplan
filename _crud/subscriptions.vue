@@ -20,8 +20,8 @@
           read: {
             columns: [
               {name: 'id', label: this.$tr('ui.form.id'), field: 'id', style: 'width: 50px'},
-              {name: 'name', label: this.$tr('ui.form.name'), field: 'name', align: 'right'},
-              {name: 'entityName', label: this.$tr('qplan.layout.form.entityName'), field: 'entityName', align: 'right'},
+              {name: 'name', label: this.$tr('ui.form.name'), field: 'name', align: 'left'},
+              {name: 'entityName', label: this.$tr('qplan.layout.form.entityName'), field: 'entityName', align: 'left'},
               {
                 name: 'start_date', label: this.$tr('qplan.layout.form.startDate'), field: 'startDate', align: 'left',
                 format: val => val ? this.$trd(val) : '-',
