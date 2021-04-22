@@ -12,6 +12,7 @@
       crudData() {
         return {
           crudId: this.crudId,
+          entityName: config("main.qplan.entityNames.entityPlan"),
           apiRoute: 'apiRoutes.qplan.entityPlans',
           permission: 'iplan.entityplans',
           extraFormFields: 'Iplan.crud-fields.entityPlans',

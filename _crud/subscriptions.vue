@@ -11,6 +11,7 @@
       crudData() {
         return {
           crudId: this.crudId,
+          entityName: config("main.qplan.entityNames.subscription"),
           apiRoute: 'apiRoutes.qplan.subscriptions',
           permission: 'iplan.subscriptions',
           extraFormFields: 'Iplan.crud-fields.subscriptions',

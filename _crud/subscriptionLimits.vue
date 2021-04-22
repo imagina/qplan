@@ -12,6 +12,7 @@ export default {
     crudData() {
       return {
         crudId: this.crudId,
+        entityName: config("main.qplan.entityNames.subscriptionLimit"),
         apiRoute: 'apiRoutes.qplan.subscriptionLimits',
         permission: 'iplan.subscriptionlimits',
         extraFormFields: 'Iplan.crud-fields.subscriptionLimits',
