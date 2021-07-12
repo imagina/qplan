@@ -1,5 +1,5 @@
 export default {
-  adminGroup : 'Planes',
+  adminGroup: 'Planes',
   adminCategories: 'Categorías',
   createCategories: 'Crear Categoría',
   editCategories: 'Editar Categoría',
@@ -18,4 +18,6 @@ export default {
   adminSubscriptionLimits: 'Límites de Suscripción',
   createSubscriptionLimits: 'Crear Límite de Suscripción',
   editSubscriptionLimits: 'Editar Límite de Suscripción',
+  //Panel
+  panelSubscriptions: 'Mis Suscripciones',
 }
