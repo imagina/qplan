@@ -75,6 +75,7 @@ export default {
           name: {
             value: '',
             type: 'input',
+            isTranslatable: true,
             props: {
               label: `${this.$tr('ui.form.name')}*`,
               rules: [
@@ -85,6 +86,7 @@ export default {
           description: {
             value: '',
             type: 'html',
+            isTranslatable: true,
             props: {
               label: `${this.$tr('ui.form.description')}*`,
               rules: [
@@ -94,6 +96,25 @@ export default {
           },
         },
         formRight: {
+          status: {
+            value: '1',
+            type: 'select',
+            props: {
+              label: this.$tr('ui.form.status'),
+              options: [
+                {label: this.$tr('ui.label.enabled'), value: '1'},
+                {label: this.$tr('ui.label.disabled'), value: '0'},
+              ]
+            }
+          },
+          sortOrder: {
+            value: null,
+            type: 'input',
+            props: {
+              label: this.$tr('ui.label.order'),
+              type: 'number'
+            }
+          },
           frequencyId: {
             value: '',
             type: 'select',
