@@ -176,6 +176,15 @@ export default {
               options: this.productOptions
             }
           },
+          internal: {
+            value: '0',
+            type: 'checkbox',
+            props: {
+              label: this.$tr('ui.label.internal'),
+              trueValue: '1',
+              falseValue: '0',
+            }
+          }
         },
       }
     },
