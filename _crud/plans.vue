@@ -138,9 +138,6 @@ export default {
               crudProps: {
                 label: `${this.$tr('ui.form.category')}*`,
                 clearable: false,
-                options: [
-                  {label: this.$tr('ui.label.disabled'), id: '0'},
-                ],
                 rules: [
                   val => !!val || this.$tr('ui.message.fieldRequired')
                 ],
