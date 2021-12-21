@@ -1,4 +1,5 @@
 export default {
+  moduleName: 'iplan',
   //Entities
   entityNames: {
     entityPlan: 'entityPlan',
