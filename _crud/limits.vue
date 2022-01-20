@@ -29,6 +29,31 @@ export default {
             {name: 'id', label: this.$tr('ui.form.id'), field: 'id', style: 'width: 50px'},
             {name: 'name', label: this.$tr('ui.form.name'), field: 'name', align: 'rigth'},
             {
+              name: 'entity', label: this.$tr('qplan.layout.form.entity'), field: 'entity', align: 'left',
+              format: val => {
+                let entity = this.entitiesOptions.find(item => item.id == val)
+                return entity?.label || '-'
+              }
+            },
+            {
+              name: 'attribute', label: this.$tr('qplan.layout.form.attribute'), field: 'attribute', align: 'left',
+              format: val => {
+                let attributes = this.limitEntities.map(item => item.attributes).flat()
+                let attr = attributes.find(item => item.value == val)
+                return attr?.label || '-'
+              }
+            },
+            {
+              name: 'attributeValue', label: this.$tr('qplan.layout.form.attributeValue'), field: 'attributeValue', align: 'left',
+              format: val => {
+                let attributes = this.limitEntities.map(item => item.attributes).flat()
+                let attrValues = attributes.map(item => item.options).flat()
+                let attValue = attrValues.find(item => item.value == val)
+                return attValue?.label || '-'
+              }
+            },
+            {name: 'quantity', label: this.$tr('ui.form.quantity'), field: 'quantity', align: 'rigth'},
+            {
               name: 'created_at', label: this.$tr('ui.form.createdAt'), field: 'createdAt', align: 'left',
               format: val => val ? this.$trd(val) : '-',
             },
