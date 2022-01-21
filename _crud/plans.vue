@@ -28,12 +28,18 @@ export default {
               format: val => val ? (val.title ? val.title : '-') : '-'
             },
             {
-              name: 'product', label: this.$tr('ui.label.product'), field: 'product', align: 'left',
-              format: val => val ? (val.name ? val.name : '-') : '-'
+              name: 'status', label: this.$tr('ui.form.status'), field: 'status', align: 'left'
             },
             {
-              name: 'price', label: this.$tr('ui.label.price'), field: 'product', align: 'left',
-              format: val => val ? (val.price ? this.$trc(val.price) : '-') : '-'
+              name: 'price', label: this.$tr('ui.label.price'), field: 'price', align: 'left',
+              format: val => val ? this.$trc(val) : '0'
+            },
+            {
+              name: 'limits', label: this.$trp('qplan.layout.form.limit'), field: 'limits',
+              align: 'left', classes: 'ellipsis', style: 'max-width : 250px',
+              format: val => val ? val.map(item => {
+                return item.name
+              }).join(', ') : ''
             },
             {
               name: 'created_at', label: this.$tr('ui.form.createdAt'), field: 'createdAt', align: 'left',
@@ -42,7 +48,7 @@ export default {
             {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
           ],
           requestParams: {
-            include: 'category',
+            include: 'category,limits',
             filter: {
               order: {
                 field: 'created_at',
@@ -107,6 +113,14 @@ export default {
               ]
             }
           },
+          price: {
+            value: 0,
+            type: 'input',
+            props: {
+              type: 'number',
+              label: this.$tr('ui.label.price')
+            }
+          },
           sortOrder: {
             value: null,
             type: 'input',
@@ -163,16 +177,6 @@ export default {
               }
             }
           },
-          productId: {
-            value: '',
-            type: 'select',
-            props: {
-              vIf: this.productOptions.length > 0,
-              label: this.$tr('ui.label.product'),
-              clearable: true,
-              options: this.productOptions
-            }
-          },
           internal: {
             value: '0',
             type: 'checkbox',
@@ -191,39 +195,8 @@ export default {
     },
     crudInfoId() {
       return this.crudInfo ? (this.crudInfo.id ? this.crudInfo.id : 0) : 0
-    },
-    productOptions() {
-      return this.$array.select(this.products, {id: 'id', label: 'name'})
     }
   },
-  watch: {
-    'crudInfoId'() {
-      this.getProductOptions()
-    }
-  },
-  methods: {
-    getProductOptions() {
-      return new Promise((resolve, reject) => {
-        //Params
-        let requestParams = {
-          refresh: true,
-          params: {
-            filter: {
-              allTranslations: true,
-              entityId: this.crudInfo.id
-            }
-          }
-        }
-        //Request
-        this.$crud.index('apiRoutes.qcommerce.products', requestParams).then(response => {
-          this.products = response.data
-          resolve(true)//Resolve
-        }).catch(error => {
-          this.$alert.error({message: this.$tr('ui.message.errorRequest'), pos: 'bottom'})
-          reject(false)//Resolve
-        })
-      })
-    }
-  }
+  methods: {}
 }
 </script>
