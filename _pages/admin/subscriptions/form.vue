@@ -7,7 +7,7 @@
         <div class="col-12">
             <q-form autocorrect="off" autocomplete="off" ref="formContent" class="box"
                     @submit="updateItem"
-                    @validation-error="$alert.error($tr('ui.message.formInvalid'))">
+                    @validation-error="$alert.error($tr('isite.cms.message.formInvalid'))">
               <div class="row q-col-gutter-md">
                   <div class="col-12 col-md-7">
                         <dynamic-field :field="dynamicFields.name" v-model="subscriptionData.name" />
@@ -19,7 +19,7 @@
                         <dynamic-field :field="dynamicFields.endDate" v-model="subscriptionData.endDate" />
                   </div>
                   <div class="col-12 text-right">
-                    <q-btn type="submit" :label="$tr('ui.label.save')" color="green" icon="save" />
+                    <q-btn type="submit" :label="$tr('isite.cms.label.save')" color="green" icon="save" />
                   </div>
               </div>
             </q-form>
@@ -75,7 +75,7 @@ export default {
             crudData: import('../../../_crud/plans'),
             clearable: true,
             crudProps:{
-              label: this.$tr('qplan.layout.form.plan'),
+              label: this.$tr('iplan.cms.form.plan'),
             }
           }
         },
@@ -84,9 +84,9 @@ export default {
           type: 'input',
           props: {
             readonly: true,
-            label: `${this.$tr('ui.form.name')}*`,
+            label: `${this.$tr('isite.cms.form.name')}*`,
             rules: [
-              val => !!val || this.$tr('ui.message.fieldRequired')
+              val => !!val || this.$tr('isite.cms.message.fieldRequired')
             ],
           }
         },
@@ -95,9 +95,9 @@ export default {
           type: 'input',
           props: {
             readonly: true,
-            label: `${this.$tr('qplan.layout.form.category')}*`,
+            label: `${this.$tr('iplan.cms.form.category')}*`,
             rules: [
-              val => !!val || this.$tr('ui.message.fieldRequired')
+              val => !!val || this.$tr('isite.cms.message.fieldRequired')
             ],
           }
         },
@@ -107,9 +107,9 @@ export default {
           props: {
             type: 'textarea',
             readonly: true,
-            label: `${this.$tr('ui.form.description')}*`,
+            label: `${this.$tr('isite.cms.form.description')}*`,
             rules: [
-              val => !!val || this.$tr('ui.message.fieldRequired')
+              val => !!val || this.$tr('isite.cms.message.fieldRequired')
             ],
           }
         },
@@ -117,9 +117,9 @@ export default {
           value: '',
           type: 'date',
           props: {
-            label: `${this.$tr('qplan.layout.form.startDate')}*`,
+            label: `${this.$tr('iplan.cms.form.startDate')}*`,
             rules: [
-              val => !!val || this.$tr('ui.message.fieldRequired')
+              val => !!val || this.$tr('isite.cms.message.fieldRequired')
             ],
           }
         },
@@ -127,9 +127,9 @@ export default {
           value: '',
           type: 'date',
           props: {
-            label: `${this.$tr('qplan.layout.form.endDate')}*`,
+            label: `${this.$tr('iplan.cms.form.endDate')}*`,
             rules: [
-              val => !!val || this.$tr('ui.message.fieldRequired')
+              val => !!val || this.$tr('isite.cms.message.fieldRequired')
             ],
           }
         },
@@ -168,7 +168,7 @@ export default {
             this.subscriptionData = this.$clone(response.data)
             resolve(true)//Resolve
           }).catch(error => {
-            this.$alert.error({message: this.$tr('ui.message.errorRequest'), pos: 'bottom'})
+            this.$alert.error({message: this.$tr('isite.cms.message.errorRequest'), pos: 'bottom'})
             reject(false)//Resolve
           })
         }else{
@@ -184,12 +184,12 @@ export default {
           let configName = 'apiRoutes.qplan.subscriptions'
           //Request
           this.$crud.update(configName, subscriptionId, this.subscriptionData).then(response => {
-            this.$alert.success({message: `${this.$tr('ui.message.recordUpdated')}`})
+            this.$alert.success({message: `${this.$tr('isite.cms.message.recordUpdated')}`})
             this.loading = false
             this.init()
             resolve(true)//Resolve
           }).catch(error => {
-            this.$alert.error({message: this.$tr('ui.message.recordNoUpdated'), pos: 'bottom'})
+            this.$alert.error({message: this.$tr('isite.cms.message.recordNoUpdated'), pos: 'bottom'})
             this.loading = false
             reject(false)//Resolve
           })

@@ -22,21 +22,21 @@ export default {
         permission: 'iplan.limits',
         extraFormFields: 'Iplan.crud-fields.limits',
         create: {
-          title: this.$tr('qplan.layout.newLimit'),
+          title: this.$tr('iplan.cms.newLimit'),
         },
         read: {
           columns: [
-            {name: 'id', label: this.$tr('ui.form.id'), field: 'id', style: 'width: 50px'},
-            {name: 'name', label: this.$tr('ui.form.name'), field: 'name', align: 'rigth'},
+            {name: 'id', label: this.$tr('isite.cms.form.id'), field: 'id', style: 'width: 50px'},
+            {name: 'name', label: this.$tr('isite.cms.form.name'), field: 'name', align: 'rigth'},
             {
-              name: 'entity', label: this.$tr('qplan.layout.form.entity'), field: 'entity', align: 'left',
+              name: 'entity', label: this.$tr('iplan.cms.form.entity'), field: 'entity', align: 'left',
               format: val => {
                 let entity = this.entitiesOptions.find(item => item.id == val)
                 return entity?.label || '-'
               }
             },
             {
-              name: 'attribute', label: this.$tr('qplan.layout.form.attribute'), field: 'attribute', align: 'left',
+              name: 'attribute', label: this.$tr('iplan.cms.form.attribute'), field: 'attribute', align: 'left',
               format: val => {
                 let attributes = this.limitEntities.map(item => item.attributes).flat()
                 let attr = attributes.find(item => item.value == val)
@@ -44,7 +44,7 @@ export default {
               }
             },
             {
-              name: 'attributeValue', label: this.$tr('qplan.layout.form.attributeValue'), field: 'attributeValue', align: 'left',
+              name: 'attributeValue', label: this.$tr('iplan.cms.form.attributeValue'), field: 'attributeValue', align: 'left',
               format: val => {
                 let attributes = this.limitEntities.map(item => item.attributes).flat()
                 let attrValues = attributes.map(item => item.options).flat()
@@ -52,12 +52,12 @@ export default {
                 return attValue?.label || '-'
               }
             },
-            {name: 'quantity', label: this.$tr('ui.form.quantity'), field: 'quantity', align: 'rigth'},
+            {name: 'quantity', label: this.$tr('isite.cms.form.quantity'), field: 'quantity', align: 'rigth'},
             {
-              name: 'created_at', label: this.$tr('ui.form.createdAt'), field: 'createdAt', align: 'left',
+              name: 'created_at', label: this.$tr('isite.cms.form.createdAt'), field: 'createdAt', align: 'left',
               format: val => val ? this.$trd(val) : '-',
             },
-            {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
+            {name: 'actions', label: this.$tr('isite.cms.form.actions'), align: 'left'},
           ],
           requestParams: {
             filter: {
@@ -69,7 +69,7 @@ export default {
           },
         },
         update: {
-          title: this.$tr('qplan.layout.updateLimit'),
+          title: this.$tr('iplan.cms.updateLimit'),
         },
         delete: true,
         formLeft: {
@@ -78,9 +78,9 @@ export default {
             value: '',
             type: 'input',
             props: {
-              label: `${this.$tr('ui.form.name')}*`,
+              label: `${this.$tr('isite.cms.form.name')}*`,
               rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
+                val => !!val || this.$tr('isite.cms.message.fieldRequired')
               ],
             }
           },
@@ -88,7 +88,7 @@ export default {
             value: '',
             type: 'select',
             props: {
-              label: `${this.$tr('qplan.layout.form.entity')}*`,
+              label: `${this.$tr('iplan.cms.form.entity')}*`,
               clearable: false,
               options: this.entitiesOptions,
             }
@@ -97,7 +97,7 @@ export default {
             value: '',
             type: 'select',
             props: {
-              label: `${this.$tr('qplan.layout.form.attribute')}`,
+              label: `${this.$tr('iplan.cms.form.attribute')}`,
               options: this.attributeOptions,
               vIf: this.attributeOptions.length,
               clearable: true
@@ -107,7 +107,7 @@ export default {
             value: '',
             type: 'select',
             props: {
-              label: `${this.$tr('qplan.layout.form.attributeValue')}*`,
+              label: `${this.$tr('iplan.cms.form.attributeValue')}*`,
               options: this.attributeValueOptions,
               vIf: this.attributeValueOptions.length,
             }
@@ -116,11 +116,11 @@ export default {
             value: '1',
             type: 'input',
             props: {
-              label: `${this.$tr('qplan.layout.form.quantity')}*`,
+              label: `${this.$tr('iplan.cms.form.quantity')}*`,
               type: 'number',
               min: '1',
               rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
+                val => !!val || this.$tr('isite.cms.message.fieldRequired')
               ],
             }
           },
@@ -174,7 +174,7 @@ export default {
           }
           resolve(true)//Resolve
         }).catch(error => {
-          this.$alert.error({message: this.$tr('ui.message.errorRequest'), pos: 'bottom'})
+          this.$alert.error({message: this.$tr('isite.cms.message.errorRequest'), pos: 'bottom'})
           reject(false)//Resolve
         })
       })

@@ -17,26 +17,26 @@ export default {
         permission: 'iplan.subscriptions',
         extraFormFields: 'Iplan.crud-fields.subscriptions',
         create: {
-          title: this.$tr('qplan.layout.newSubscription'),
+          title: this.$tr('iplan.cms.newSubscription'),
         },
         read: {
           columns: [
-            {name: 'id', label: this.$tr('ui.form.id'), field: 'id', style: 'width: 50px'},
-            {name: 'name', label: this.$tr('ui.form.name'), field: 'name', align: 'left'},
-            {name: 'entityName', label: this.$tr('qplan.layout.form.entityName'), field: 'entityName', align: 'left'},
+            {name: 'id', label: this.$tr('isite.cms.form.id'), field: 'id', style: 'width: 50px'},
+            {name: 'name', label: this.$tr('isite.cms.form.name'), field: 'name', align: 'left'},
+            {name: 'entityName', label: this.$tr('iplan.cms.form.entityName'), field: 'entityName', align: 'left'},
             {
-              name: 'start_date', label: this.$tr('qplan.layout.form.startDate'), field: 'startDate', align: 'left',
+              name: 'start_date', label: this.$tr('iplan.cms.form.startDate'), field: 'startDate', align: 'left',
               format: val => val ? this.$trd(val) : '-',
             },
             {
-              name: 'end_date', label: this.$tr('qplan.layout.form.endDate'), field: 'endDate', align: 'left',
+              name: 'end_date', label: this.$tr('iplan.cms.form.endDate'), field: 'endDate', align: 'left',
               format: val => val ? this.$trd(val) : '-',
             },
             {
-              name: 'created_at', label: this.$tr('ui.form.createdAt'), field: 'createdAt', align: 'left',
+              name: 'created_at', label: this.$tr('isite.cms.form.createdAt'), field: 'createdAt', align: 'left',
               format: val => val ? this.$trd(val) : '-',
             },
-            {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
+            {name: 'actions', label: this.$tr('isite.cms.form.actions'), align: 'left'},
           ],
           requestParams: {
             filter: {
@@ -53,7 +53,7 @@ export default {
           showAs: this.app.mode == 'ipanel' ? 'grid' : 'table'
         },
         update: {
-          title: this.$tr('qplan.layout.updateSubscription'),
+          title: this.$tr('iplan.cms.updateSubscription'),
           to: 'qplan.admin.subscriptions.edit',
         },
         delete: true,
@@ -71,7 +71,7 @@ export default {
               },
               crudType: 'select',
               crudProps: {
-                label: this.$tr('ui.label.user'),
+                label: this.$tr('isite.cms.label.user'),
                 clearable: false,
               },
             }
@@ -88,7 +88,7 @@ export default {
               },
               crudType: 'select',
               crudProps: {
-                label: this.$tr('qplan.layout.form.plan'),
+                label: this.$tr('iplan.cms.form.plan'),
                 clearable: false,
               },
             }

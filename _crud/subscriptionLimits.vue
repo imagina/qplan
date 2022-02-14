@@ -19,13 +19,13 @@ export default {
         create: false,
         read: {
           columns: [
-            {name: 'id', label: this.$tr('ui.form.id'), field: 'id', style: 'width: 50px'},
-            {name: 'name', label: this.$tr('ui.form.name'), field: 'name', align: 'left'},
+            {name: 'id', label: this.$tr('isite.cms.form.id'), field: 'id', style: 'width: 50px'},
+            {name: 'name', label: this.$tr('isite.cms.form.name'), field: 'name', align: 'left'},
             {
-              name: 'created_at', label: this.$tr('ui.form.createdAt'), field: 'createdAt', align: 'left',
+              name: 'created_at', label: this.$tr('isite.cms.form.createdAt'), field: 'createdAt', align: 'left',
               format: val => val ? this.$trd(val) : '-',
             },
-            {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
+            {name: 'actions', label: this.$tr('isite.cms.form.actions'), align: 'left'},
           ],
           requestParams: {
             filter: {
@@ -37,7 +37,7 @@ export default {
           },
         },
         update: {
-          title: this.$tr('qplan.layout.updateSubscriptionLimit'),
+          title: this.$tr('iplan.cms.updateSubscriptionLimit'),
         },
         formLeft: {
           id: {value: ''},
@@ -46,9 +46,9 @@ export default {
             type: 'input',
             props: {
               readonly: true,
-              label: `${this.$tr('ui.form.name')}*`,
+              label: `${this.$tr('isite.cms.form.name')}*`,
               rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
+                val => !!val || this.$tr('isite.cms.message.fieldRequired')
               ],
             }
           },
@@ -56,11 +56,11 @@ export default {
             value: '1',
             type: 'input',
             props: {
-              label: `${this.$tr('qplan.layout.form.quantity')}*`,
+              label: `${this.$tr('iplan.cms.form.quantity')}*`,
               type: 'number',
               min: '1',
               rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
+                val => !!val || this.$tr('isite.cms.message.fieldRequired')
               ],
             }
           },
@@ -68,11 +68,11 @@ export default {
             value: '0',
             type: 'input',
             props: {
-              label: `${this.$tr('qplan.layout.form.quantityUsed')}*`,
+              label: `${this.$tr('iplan.cms.form.quantityUsed')}*`,
               type: 'number',
               min: '0',
               rules: [
-                val => val >= 0 || this.$tr('ui.message.fieldRequired')
+                val => val >= 0 || this.$tr('isite.cms.message.fieldRequired')
               ],
             }
           },

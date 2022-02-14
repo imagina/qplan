@@ -3,7 +3,7 @@ const pages = config('pages') // Get Pages from config
 //E-commerce
 export default [
   {
-    title: 'qplan.sidebar.adminGroup',
+    title: 'iplan.cms.sidebar.adminGroup',
     icon: 'fas fa-window-restore',
     children: [
       pages.qplan.plans,

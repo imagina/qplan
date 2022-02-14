@@ -17,21 +17,21 @@
           permission: 'iplan.entityplans',
           extraFormFields: 'Iplan.crud-fields.entityPlans',
           create: {
-            title: this.$tr('qplan.layout.newEntityPlan'),
+            title: this.$tr('iplan.cms.newEntityPlan'),
           },
           read: {
             columns: [
-              {name: 'id', label: this.$tr('ui.form.id'), field: 'id', style: 'width: 50px'},
-              {name: 'module', label: this.$tr('qplan.layout.form.module'), field: 'module'},
-              {name: 'entityName', label: this.$tr('qplan.layout.form.entity'), field: 'entityName'},
+              {name: 'id', label: this.$tr('isite.cms.form.id'), field: 'id', style: 'width: 50px'},
+              {name: 'module', label: this.$tr('iplan.cms.form.module'), field: 'module'},
+              {name: 'entityName', label: this.$tr('iplan.cms.form.entity'), field: 'entityName'},
               {
-                name: 'status', label: this.$tr('ui.form.status'), field: 'status'
+                name: 'status', label: this.$tr('isite.cms.form.status'), field: 'status'
               },
               {
-                name: 'created_at', label: this.$tr('ui.form.createdAt'), field: 'createdAt', align: 'left',
+                name: 'created_at', label: this.$tr('isite.cms.form.createdAt'), field: 'createdAt', align: 'left',
                 format: val => val ? this.$trd(val) : '-',
               },
-              {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
+              {name: 'actions', label: this.$tr('isite.cms.form.actions'), align: 'left'},
             ],
             requestParams: {
               filter: {
@@ -43,7 +43,7 @@
             },
           },
           update: {
-            title: this.$tr('qplan.layout.updateEntityPlan'),
+            title: this.$tr('iplan.cms.updateEntityPlan'),
           },
           delete: true,
           formLeft: {
@@ -52,9 +52,9 @@
               value: '',
               type: 'select',
               props: {
-                label: `${this.$tr('qplan.layout.form.module')}*`,
+                label: `${this.$tr('iplan.cms.form.module')}*`,
                 rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired')
+                  val => !!val || this.$tr('isite.cms.message.fieldRequired')
                 ],
                 options: this.moduleOptions,
               }
@@ -63,9 +63,9 @@
               value: '',
               type: 'select',
               props: {
-                label: `${this.$tr('qplan.layout.form.entity')}*`,
+                label: `${this.$tr('iplan.cms.form.entity')}*`,
                 rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired')
+                  val => !!val || this.$tr('isite.cms.message.fieldRequired')
                 ],
                 options: this.entityOptions,
                 vIf: this.entityOptions.length,
@@ -75,13 +75,13 @@
               value: '1',
               type: 'select',
               props: {
-                label: `${this.$tr('ui.form.status')}*`,
+                label: `${this.$tr('isite.cms.form.status')}*`,
                 options: [
-                  {label: this.$tr('ui.label.enabled'), value: '1'},
-                  {label: this.$tr('ui.label.disabled'), value: '0'}
+                  {label: this.$tr('isite.cms.label.enabled'), value: '1'},
+                  {label: this.$tr('isite.cms.label.disabled'), value: '0'}
                 ],
                 rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired')
+                  val => !!val || this.$tr('isite.cms.message.fieldRequired')
                 ],
               }
             },
@@ -120,7 +120,7 @@
             this.planModules = response.data
             resolve(true)//Resolve
           }).catch(error => {
-            this.$alert.error({message: this.$tr('ui.message.errorRequest'), pos: 'bottom'})
+            this.$alert.error({message: this.$tr('isite.cms.message.errorRequest'), pos: 'bottom'})
             reject(false)//Resolve
           })
         })
