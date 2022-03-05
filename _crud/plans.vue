@@ -170,10 +170,10 @@ export default {
                 }
               },
               crudProps: {
-                label: `${this.$tr('iplan.cms.form.limit')}*`,
+                label: `${this.$tr('iplan.cms.form.limit')}`,
                 multiple: true,
                 useChips: true,
-                rules: [val => val.length || this.$tr('isite.cms.message.fieldRequired')]
+                //rules: [val => val.length || this.$tr('isite.cms.message.fieldRequired')]
               }
             }
           },

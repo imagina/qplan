@@ -4,7 +4,7 @@ const urlBase = `/${moduleName}/${moduleVersion}`
 
 
 export default {
-  urlBase : urlBase,
+  urlBase: urlBase,
   version: moduleVersion,
   categories: `${urlBase}/categories`,
   plans: `${urlBase}/plans`,
@@ -14,6 +14,7 @@ export default {
   limits: `${urlBase}/limits`,
   limitEntities: `${urlBase}/limits/entities`,
   subscriptions: `${urlBase}/subscriptions`,
+  buy: `${urlBase}/subscriptions/buy`,
   subscriptionEntities: `${urlBase}/subscriptions/entities`,
   subscriptionLimits: `${urlBase}/subscription-limits`,
 }
