@@ -72,11 +72,12 @@ export default {
 
       //Map plans
       plans = plans.map(plan => {
+        console.warn(plan)
         return {
           id: plan.id,
           name: plan.name,
           description: plan.description,
-          price: plan.product.price || 0,
+          price: plan.product?.price || 0,
           frequency: plan.frequency
         }
       })
