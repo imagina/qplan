@@ -72,7 +72,6 @@ export default {
 
       //Map plans
       plans = plans.map(plan => {
-        console.warn(plan)
         return {
           id: plan.id,
           name: plan.name,

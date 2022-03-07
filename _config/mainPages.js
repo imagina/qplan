@@ -2,8 +2,8 @@ export default {
   userSubscriptions: {
     permission: 'iplan.plans.manage',
     activated: true,
-    path: '/plans',
-    name: 'qplan.admin.plans.index',
+    path: '/plans/me',
+    name: 'qplan.admin.my.plans',
     page: () => import('@imagina/qplan/_pages/main/myPlan'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     title: 'iplan.cms.sidebar.adminUserSubscriptions',
