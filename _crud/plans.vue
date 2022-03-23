@@ -100,6 +100,7 @@ export default {
               ],
             }
           },
+           
         },
         formRight: {
           status: {
@@ -185,8 +186,18 @@ export default {
               trueValue: '1',
               falseValue: '0',
             }
+          },
+          mediasSingle: {
+            value: {},
+            type: 'media',
+            props: {
+              label: this.$tr('isite.cms.form.image'),
+              zone: 'mainimage',
+              entity: "Modules\\Iplan\\Entities\\Plan",
+              entityId: null
+            }
           }
-        },
+        }
       }
     },
     //Crud info
