@@ -20,7 +20,7 @@
               <div class="plan-card__bottom row justify-between items-center">
                 <div>
                   <!--Price-->
-                  <div class="plan-card__price"><b>${{ $trn(plan.price) }}</b></div>
+                  <div class="plan-card__price"><b>{{ plan.priceFormat }}</b></div>
                   <!--Time-->
                   <div class="plan-card__price text-caption">{{ plan.frequency }}</div>
                 </div>
@@ -77,6 +77,7 @@ export default {
           name: plan.name,
           description: plan.description,
           price: plan.product?.price || 0,
+          priceFormat: plan.priceFormat,
           frequency: plan.frequency
         }
       })
