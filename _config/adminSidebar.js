@@ -11,6 +11,7 @@ export default [
       pages.qplan.categories,
       pages.qplan.entityPlans,
       pages.qplan.subscriptions,
+      pages.mainqplan.userSubscriptions
     ]
   }
 ]
