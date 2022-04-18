@@ -9,7 +9,7 @@
       <!--Other Plans-->
       <div id="otherPlans" class="box box-auto-height" v-if="plans.length">
         <div class="row q-col-gutter-md">
-          <div v-for="(plan, keyPlan) in plansData" :key="keyPlan" class="col-6 col-md-4">
+          <div v-for="(plan, keyPlan) in plansData" :key="keyPlan" class="col-12 col-md-4">
             <div class="plan-card">
               <!--Name-->
               <div class="plan-card__name">{{ plan.name }}</div>
