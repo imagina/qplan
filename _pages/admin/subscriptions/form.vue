@@ -168,8 +168,10 @@ export default {
             this.subscriptionData = this.$clone(response.data)
             resolve(true)//Resolve
           }).catch(error => {
-            this.$alert.error({message: this.$tr('isite.cms.message.errorRequest'), pos: 'bottom'})
-            reject(false)//Resolve
+            this.$apiResponse.handleError(error, () => {
+              this.$alert.error({message: this.$tr('isite.cms.message.errorRequest'), pos: 'bottom'})
+              reject(false)//Resolve
+            })
           })
         }else{
           resolve(true)

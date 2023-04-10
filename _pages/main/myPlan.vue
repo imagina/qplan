@@ -135,7 +135,9 @@ export default {
           this.subscription = response.data
           resolve(response.data)
         }).catch(error => {
-          resolve(error)
+          this.$apiResponse.handleError(error, () => {
+            resolve(error)
+          })
         })
       })
     },
@@ -153,7 +155,9 @@ export default {
           this.plans = response.data
           resolve(response.data)
         }).catch(error => {
-          resolve(error)
+          this.$apiResponse.handleError(error, () => {
+            resolve(error)
+          })
         })
       })
     },
