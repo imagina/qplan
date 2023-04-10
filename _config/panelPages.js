@@ -8,7 +8,7 @@ export default {
     page: () => import('@imagina/qcrud/_pages/admin/crudPage'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     title: 'iplan.cms.sidebar.panelSubscriptions',
-    icon: 'fas fa-file-contract',
+    icon: 'fa-light fa-file-invoice-dollar',
     authenticated: true,
     subHeader: {
       refresh: true,

@@ -4,7 +4,7 @@ const pages = config('pages') // Get Pages from config
 export default [
   {
     title: 'iplan.cms.sidebar.adminGroup',
-    icon: 'fas fa-window-restore',
+    icon: 'fa-light fa-file-invoice',
     children: [
       pages.qplan.plans,
       pages.qplan.limits,

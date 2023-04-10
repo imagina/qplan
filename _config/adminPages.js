@@ -8,7 +8,7 @@ export default {
     page: () => import('@imagina/qcrud/_pages/admin/crudPage'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     title: 'iplan.cms.sidebar.adminPlans',
-    icon: 'fas fa-window-restore',
+    icon: 'fa-light fa-file-invoice',
     authenticated: true,
     subHeader: {
       refresh: true,
@@ -23,7 +23,7 @@ export default {
     page: () => import('@imagina/qcrud/_pages/admin/crudPage'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     title: 'iplan.cms.sidebar.adminLimits',
-    icon: 'fas fa-key',
+    icon: 'fa-light fa-gauge-max',
     authenticated: true,
     subHeader: {
       refresh: true,
@@ -39,7 +39,7 @@ export default {
     page: () => import('@imagina/qcrud/_pages/admin/crudPage'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     title: 'iplan.cms.sidebar.adminCategories',
-    icon: 'fas fa-layer-group',
+    icon: 'fa-light fa-layer-group',
     authenticated: true,
     subHeader: {
       refresh: true,
@@ -55,7 +55,7 @@ export default {
     page: () => import('@imagina/qcrud/_pages/admin/crudPage'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     title: 'iplan.cms.sidebar.adminEntityPlans',
-    icon: 'fas fa-tasks',
+    icon: 'fa-light fa-ballot-check',
     authenticated: true,
     subHeader: {
       refresh: true,
@@ -71,7 +71,7 @@ export default {
     page: () => import('@imagina/qcrud/_pages/admin/crudPage'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     title: 'iplan.cms.sidebar.adminSubscriptions',
-    icon: 'fas fa-file-contract',
+    icon: 'fa-light fa-file-invoice-dollar',
     authenticated: true,
     subHeader: {
       refresh: true,
@@ -86,7 +86,7 @@ export default {
     page: () => import('../_pages/admin/subscriptions/form'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     title: 'iplan.cms.sidebar.editSubscriptions',
-    icon: 'fas fa-file-signature',
+    icon: 'fa-light fa-file-invoice-dollar',
     authenticated: true,
     subHeader: {
       refresh: true,

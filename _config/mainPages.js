@@ -7,7 +7,7 @@ export default {
     page: () => import('@imagina/qplan/_pages/main/myPlan'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     title: 'iplan.cms.sidebar.adminSubscriptions',
-    icon: 'fas fa-window-restore',
+    icon: 'fa-light fa-file-invoice-dollar',
     authenticated: true,
     subHeader: {
       refresh: true,
