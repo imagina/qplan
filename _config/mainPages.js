@@ -6,7 +6,7 @@ export default {
     name: 'qplan.admin.my.plans',
     page: () => import('@imagina/qplan/_pages/main/myPlan'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
-    title: 'iplan.cms.sidebar.adminSubscriptions',
+    title: 'iplan.cms.sidebar.adminMySubscriptions',
     icon: 'fa-light fa-file-invoice-dollar',
     authenticated: true,
     subHeader: {

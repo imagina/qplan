@@ -4,7 +4,7 @@
     <div id="content" class="relative-position">
       <!--pages actions-->
       <div class="box box-auto-height q-mb-md">
-        <page-actions :title="$route.meta.title" @refresh="getData(true)"/>
+        <page-actions :title="$tr($route.meta.title)" @refresh="getData(true)"/>
       </div>
       <!--Other Plans-->
       <div id="otherPlans" class="box box-auto-height" v-if="plans.length">
