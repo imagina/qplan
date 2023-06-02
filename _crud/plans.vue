@@ -114,6 +114,17 @@ export default {
               ]
             }
           },
+          trial: {
+            value: '0',
+            type: 'select',
+            props: {
+              label: this.$tr('isite.cms.label.trial'),
+              options: [
+                {label: this.$tr('isite.cms.label.enabled'), value: '1'},
+                {label: this.$tr('isite.cms.label.disabled'), value: '0'},
+              ]
+            }
+          },
           price: {
             value: 0,
             type: 'input',
