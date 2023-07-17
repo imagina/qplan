@@ -100,7 +100,7 @@ export default {
               ],
             }
           },
-           
+
         },
         formRight: {
           status: {
@@ -115,14 +115,14 @@ export default {
             }
           },
           trial: {
-            value: '0',
-            type: 'select',
+            value: null,
+            type: 'input',
+            help: {
+              description: this.$tr('iplan.cms.helpFieldTrial')
+            },
             props: {
               label: this.$tr('isite.cms.label.trial'),
-              options: [
-                {label: this.$tr('isite.cms.label.enabled'), value: '1'},
-                {label: this.$tr('isite.cms.label.disabled'), value: '0'},
-              ]
+              type: 'number'
             }
           },
           price: {
