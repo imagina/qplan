@@ -187,7 +187,7 @@ export default {
   }
 }
 </script>
-<style lang="sass">
+<style lang="scss">
 #mySubscriptionsPage
   .plan-card
     border 2px solid $info
