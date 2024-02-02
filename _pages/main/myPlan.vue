@@ -188,32 +188,38 @@ export default {
 }
 </script>
 <style lang="scss">
-#mySubscriptionsPage
-  .plan-card
-    border 2px solid $info
-    border-radius $custom-radius
-    overflow hidden
-    color $blue-grey
+#mySubscriptionsPage {
+  .plan-card {
+    border: 2px solid $info;
+    border-radius: $custom-radius;
+    overflow: hidden;
+    color: $blue-grey;
 
-    &__name
-      background-color $info
-      padding 15px
-      font-size 20px
-      color white
-      font-weight bold
+    &__name {
+      background-color: $info;
+      padding: 15px;
+      font-size: 20px;
+      color: white;
+      font-weight: bold;
+    }
 
-    &__description
-      padding 14px 10px
-      line-height 1
+    &__description {
+      padding: 14px 10px;
+      line-height: 1;
 
-      p
-        margin 0
+      p {
+        margin: 0;
+      }
+    }
 
-    &__bottom
-      line-height 1
-      padding 10px
+    &__bottom {
+      line-height: 1;
+      padding: 10px;
+    }
 
-    &__label-current
-      border-radius $custom-radius
-
+    &__label-current {
+      border-radius: $custom-radius;
+    }
+  }
+}
 </style>
