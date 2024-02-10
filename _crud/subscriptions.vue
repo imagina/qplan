@@ -63,7 +63,7 @@ export default {
             value: '',
             type: 'crud',
             props: {
-              crudData: import('@imagina/quser/_crud/users'),
+              crudData: import('modules/quser/_crud/users'),
               config: {
                 options: {
                   label: 'fullName', value: 'id'
