@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import { eventBus } from 'src/plugins/utils'
 
 export default {
   name: "subscriptionsForm",
@@ -137,7 +138,7 @@ export default {
     },
   },
   mounted(){
-    this.$root.$on('page.data.refresh', () => this.init())//Listen refresh event
+    eventBus.on('page.data.refresh', () => this.init())//Listen refresh event
     this.init()
   },
   methods:{
