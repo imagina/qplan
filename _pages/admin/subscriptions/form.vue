@@ -19,7 +19,7 @@
                         <dynamic-field :field="dynamicFields.endDate" v-model="subscriptionData.endDate" />
                   </div>
                   <div class="col-12 text-right">
-                    <q-btn type="submit" :label="$tr('isite.cms.label.save')" color="green" icon="save" />
+                    <q-btn type="submit" :label="$tr('isite.cms.label.save')" color="green" icon="fa-light fa-save" />
                   </div>
               </div>
             </q-form>
