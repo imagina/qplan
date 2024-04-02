@@ -117,11 +117,12 @@ export default {
           trial: {
             value: null,
             type: 'input',
+            required: true,
             help: {
               description: this.$tr('iplan.cms.helpFieldTrial')
             },
             props: {
-              label: this.$tr('isite.cms.label.trial'),
+              label: `${this.$tr('isite.cms.label.trial')}*`,
               type: 'number'
             }
           },
