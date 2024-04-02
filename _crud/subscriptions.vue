@@ -60,7 +60,7 @@ export default {
         formLeft: {
           entity: {value: 'Modules\\User\\Entities\\Sentinel\\User'},
           entityId: {
-            value: '',
+            value: null,
             type: 'crud',
             props: {
               crudData: import('modules/quser/_crud/users'),
@@ -77,7 +77,7 @@ export default {
             }
           },
           planId: {
-            value: '',
+            value: null,
             type: 'crud',
             props: {
               crudData: import('../_crud/plans'),
