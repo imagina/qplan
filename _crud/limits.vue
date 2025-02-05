@@ -45,10 +45,10 @@ export default {
             },
             {
               name: 'attributeValue', label: this.$tr('iplan.cms.form.attributeValue'), field: 'attributeValue', align: 'left',
-              format: val => {
+              format: (val, row) => {
                 let attributes = this.limitEntities.map(item => item.attributes).flat()
-                let attrValues = attributes.map(item => item.options).flat()
-                let attValue = attrValues.find(item => item.value == val)
+                let attrValues = attributes.find(item => item.value == row.attribute)
+                let attValue = attrValues.options.find(item => item.value == val)
                 return attValue?.label || '-'
               }
             },
