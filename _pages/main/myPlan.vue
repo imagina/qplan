@@ -4,7 +4,7 @@
     <div id="content" class="relative-position">
       <!--pages actions-->
       <div class="box box-auto-height q-mb-md">
-        <page-actions :title="$tr($route.meta.title)" @refresh="getData(true)"/>
+        <page-actions :title="$tr($route.meta.title)" @refresh="getData(true)" />
       </div>
       <!--Other Plans-->
       <div id="otherPlans" class="box box-auto-height" v-if="plans.length">
@@ -14,8 +14,8 @@
               <!--Name-->
               <div class="plan-card__name">{{ plan.name }}</div>
               <!--Description-->
-              <div class="plan-card__description" v-html="plan.description"/>
-              <q-separator inset/>
+              <div class="plan-card__description" v-html="plan.description" />
+              <q-separator inset />
               <!--Bottom content-->
               <div class="plan-card__bottom row justify-between items-center">
                 <div>
@@ -32,8 +32,14 @@
                   </div>
                   <!--btn actions-->
                   <q-btn v-else :label="$tr('isite.cms.label.select')" rounded color="green"
-                         unelevated outline no-caps size="12px" @click="buySubscription(plan)"/>
+                         unelevated outline no-caps size="12px" @click="buySubscription(plan)" />
                 </div>
+              </div>
+              <!-- Cancel -->
+              <div v-if="plan.urlToCancel" @click="cancelSubscription(plan)"
+                 class="text-center text-red-6 q-py-sm tw-cursor-pointer">
+                <q-separator inset />
+                {{$tr('iplan.cms.cancelSubscription')}}
               </div>
             </div>
           </div>
@@ -41,10 +47,10 @@
       </div>
       <!--Empty plans-->
       <div v-else-if="!loading" class="box row items-center justify-center">
-        <not-result/>
+        <not-result />
       </div>
       <!--inner loading-->
-      <inner-loading :visible="loading"/>
+      <inner-loading :visible="loading" />
     </div>
   </div>
 </template>
@@ -54,21 +60,21 @@ export default {
   components: {},
   watch: {},
   mounted() {
-    this.$nextTick(function () {
-      this.init()
-    })
+    this.$nextTick(function() {
+      this.init();
+    });
   },
   data() {
     return {
       loading: false,
       subscription: null,
       plans: []
-    }
+    };
   },
   computed: {
     plansData() {
-      let plans = this.$clone(this.plans)
-      let subscription = this.$clone(this.subscription)
+      let plans = this.$clone(this.plans);
+      let subscription = this.$clone(this.subscription);
 
       //Map plans
       plans = plans.map(plan => {
@@ -79,13 +85,13 @@ export default {
           price: plan.product?.price || 0,
           priceFormat: plan.priceFormat,
           frequency: plan.frequency
-        }
-      })
+        };
+      });
 
       //Order by price
-      plans.sort(function (a, b) {
-        if (a.price > b.price) return 1
-        if (a.price < b.price) return -1
+      plans.sort(function(a, b) {
+        if (a.price > b.price) return 1;
+        if (a.price < b.price) return -1;
         return 0;
       });
 
@@ -93,99 +99,138 @@ export default {
       if (subscription && subscription.planId) {
         this.$clone(plans).forEach((plan, index) => {
           if (parseInt(plan.id) == parseInt(subscription.planId)) {
-            plans.unshift({...plans.splice(index, 1)[0], current: true})
+            plans.unshift({
+              ...plans.splice(index, 1)[0],
+              current: true,
+              urlToCancel: subscription.urlToCancel ?? null
+            });
           }
-        })
+        });
       }
 
       //Response
-      return plans
+      return plans;
     }
   },
   methods: {
     init() {
-      this.getData()
+      this.getData();
     },
     //Get data
     async getData(refresh = false) {
-      this.loading = true
+      this.loading = true;
       await Promise.all([
         this.getSubscription(refresh),
         this.getPlans(refresh)
-      ])
-      this.loading = false
+      ]);
+      this.loading = false;
     },
     //Get data
     getSubscription(refresh = false) {
       return new Promise((resolve, reject) => {
         //get user id
-        let userId = this.$store.state.quserAuth.userId
+        let userId = this.$store.state.quserAuth.userId;
         //Requets params
         let requestParams = {
           refresh: refresh,
           params: {
             filter: {
               field: 'entity_id',
-              entity: "Modules\\User\\Entities\\Sentinel\\User"
+              entity: 'Modules\\User\\Entities\\Sentinel\\User'
             }
           }
-        }
+        };
         //Request
         this.$crud.show('apiRoutes.qplan.subscriptions', userId, requestParams).then(response => {
-          this.subscription = response.data
-          resolve(response.data)
+          this.subscription = response.data;
+          resolve(response.data);
         }).catch(error => {
           this.$apiResponse.handleError(error, () => {
-            resolve(error)
-          })
-        })
-      })
+            resolve(error);
+          });
+        });
+      });
     },
     //Get data
     getPlans(refresh = false) {
       return new Promise((resolve, reject) => {
-        this.loading = true
+        this.loading = true;
         //Requets params
         let requestParams = {
           refresh: refresh,
-          params: {include: 'product'}
-        }
+          params: { include: 'product' }
+        };
         //Request
         this.$crud.index('apiRoutes.qplan.plans', requestParams).then(response => {
-          this.plans = response.data
-          resolve(response.data)
+          this.plans = response.data;
+          resolve(response.data);
         }).catch(error => {
           this.$apiResponse.handleError(error, () => {
-            resolve(error)
-          })
-        })
-      })
+            resolve(error);
+          });
+        });
+      });
     },
     //Create subcription
     buySubscription(plan) {
-      return new Promise(resolve => {
-        this.loading = true
-        //Request data
-        let requestData = {planId: plan.id}
-        //Request
-        this.$crud.create('apiRoutes.qplan.buy', requestData).then(response => {
-          this.$alert.info({message: `${this.$tr('isite.cms.message.recordCreated')}`})
-          this.getData(true)
-          //Rediret to
-          if (response.data && response.data.redirectTo) {
-            this.$helper.openExternalURL(response.data.redirectTo, true)
+      this.$alert.warning({
+        mode: 'modal',
+        title: this.$tr('iplan.cms.buyPlan') + plan.name,
+        message: plan.description,
+        actions: [
+          { label: this.$tr('isite.cms.label.cancel'), color: 'grey' },
+          {
+            label: this.$tr('isite.cms.label.yes'),
+            color: 'green',
+            handler: () => {
+              this.loading = true;
+              //Request data
+              let requestData = { planId: plan.id };
+              //Request
+              this.$crud.create('apiRoutes.qplan.buy', requestData).then(response => {
+                this.$alert.info({ message: `${this.$tr('isite.cms.message.recordCreated')}` });
+                this.getData(true);
+                //Rediret to
+                if (response.data && response.data.redirectTo) {
+                  this.$helper.openExternalURL(response.data.redirectTo, true);
+                }
+                this.loading = false;
+              }).catch(error => {
+                this.$alert.error({ message: `${this.$tr('isite.cms.message.recordNoCreated')}` });
+                this.loading = false;
+              });
+            }
           }
-          this.loading = false
-          resolve(response.data)
-        }).catch(error => {
-          this.$alert.error({message: `${this.$tr('isite.cms.message.recordNoCreated')}`})
-          this.loading = false
-          resolve(error)
-        })
-      })
+        ]
+      });
+    },
+    //Cancel suscription
+    //Create subcription
+    cancelSubscription(plan) {
+      this.$alert.error({
+        mode: 'modal',
+        title: this.$tr('iplan.cms.cancelSubscription'),
+        message: plan.description,
+        actions: [
+          { label: this.$tr('isite.cms.label.cancel'), color: 'grey' },
+          {
+            label: this.$tr('isite.cms.label.yes'),
+            color: 'green',
+            handler: () => {
+              this.loading = true;
+              //Request
+              this.$crud.post(this.subscription.urlToCancel).then(response => {
+                this.loading = false;
+              }).catch(error => {
+                this.loading = false;
+              });
+            }
+          }
+        ]
+      });
     }
   }
-}
+};
 </script>
 <style lang="scss">
 #mySubscriptionsPage {
