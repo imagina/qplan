@@ -35,6 +35,10 @@ export default {
               format: val => val ? this.$trc(val) : '0'
             },
             {
+              name: 'isRecurring', label: this.$tr('iplan.cms.form.isRecurring'), field: 'isRecurring', align: 'left',
+              format: val => this.$tr(`iplan.cms.${val ? 'recurring' : 'oneTime'}`)
+            },
+            {
               name: 'limits', label: this.$trp('iplan.cms.form.limit'), field: 'limits',
               align: 'left', classes: 'ellipsis', style: 'max-width : 250px',
               format: val => val ? val.map(item => {
@@ -115,15 +119,28 @@ export default {
             }
           },
           trial: {
-            value: null,
+            value: 0,
             type: 'input',
-            required: true,
             help: {
               description: this.$tr('iplan.cms.helpFieldTrial')
             },
             props: {
               label: `${this.$tr('isite.cms.label.trial')}*`,
-              type: 'number'
+              type: 'number',
+              rules: [
+                val => val.length || this.$tr('isite.cms.message.fieldRequired')
+              ],
+            }
+          },
+          isRecurring: {
+            value: '0',
+            type: 'select',
+            props: {
+              label: this.$tr('iplan.cms.form.isRecurring'),
+              options: [
+                {label: this.$tr('iplan.cms.oneTime'), value: '0'},
+                {label: this.$tr('iplan.cms.recurring'), value: '1'},
+              ]
             }
           },
           price: {
