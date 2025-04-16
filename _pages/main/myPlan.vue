@@ -7,25 +7,40 @@
         <page-actions :title="$tr($route.meta.title)" @refresh="getData(true)" />
       </div>
       <!--Other Plans-->
-      <div id="otherPlans" class="box box-auto-height" v-if="plans.length">
+      <div id="otherPlans" class="box box-auto-height" v-if="subscription">
         <div class="row q-col-gutter-md">
-          <div v-for="(plan, keyPlan) in plansData" :key="keyPlan" class="col-12 col-md-4">
+          <div v-for="(subscription, keyPlan) in [subscription]" :key="keyPlan" class="col-12 col-md-4">
             <div class="plan-card">
               <!--Name-->
-              <div class="plan-card__name">{{ plan.name }}</div>
+              <div class="plan-card__name">{{ subscription.plan.name }}</div>
               <!--Description-->
-              <div class="plan-card__description" v-html="plan.description" />
+              <div class="plan-card__description" v-html="subscription.plan.description" />
               <q-separator inset />
               <!--Bottom content-->
               <div class="plan-card__bottom row justify-between items-center">
-                <div>
+                <div class="full-width">
                   <!--Price-->
-                  <div class="plan-card__price"><b>{{ plan.priceFormat }}</b></div>
+                  <div class="plan-card__price" v-if="false"><b>{{ subscription.plan.priceFormat }}</b></div>
                   <!--Time-->
-                  <div class="plan-card__price text-caption">{{ plan.frequency }}</div>
+                  <div class="plan-card__price text-caption text-center">{{ subscription.plan.frequency }}</div>
+                  <!--Status-->
+                  <div class="plan-card__price text-caption row justify-between full-width">
+                    <div>{{$tr('isite.cms.form.status')}}:</div>
+                    <div>{{ subscription.statusName}}</div>
+                  </div>
+                  <!--Start Date-->
+                  <div class="plan-card__price text-caption row justify-between full-width">
+                    <div>{{$tr('isite.cms.form.startDate')}}:</div>
+                    <div>{{ $trd(subscription.startDate) }}</div>
+                  </div>
+                  <!-- end Date-->
+                  <div class="plan-card__price text-caption row justify-between full-width">
+                    <div>{{$tr('isite.cms.form.endDate')}}:</div>
+                    <div>{{ $trd(subscription.endDate) }}</div>
+                  </div>
                 </div>
                 <!--Activate-->
-                <div>
+                <div v-if="false">
                   <!--Current message-->
                   <div v-if="plan.current" class="plan-card__label-current bg-green text-white q-pa-sm">
                     ¡{{ $tr('isite.cms.label.currentPlan') }}!
@@ -36,10 +51,10 @@
                 </div>
               </div>
               <!-- Cancel -->
-              <div v-if="plan.urlToCancel" @click="cancelSubscription(plan)"
-                 class="text-center text-red-6 q-py-sm tw-cursor-pointer">
+              <div v-if="subscription.urlToCancel" @click="cancelSubscription(subscription.plan)"
+                   class="text-center text-red-6 q-py-sm tw-cursor-pointer">
                 <q-separator inset />
-                {{$tr('iplan.cms.cancelSubscription')}}
+                {{ $tr('iplan.cms.cancelSubscription') }}
               </div>
             </div>
           </div>
@@ -120,8 +135,8 @@ export default {
     async getData(refresh = false) {
       this.loading = true;
       await Promise.all([
-        this.getSubscription(refresh),
-        this.getPlans(refresh)
+        this.getSubscription(refresh)
+        //this.getPlans(refresh)
       ]);
       this.loading = false;
     },
@@ -134,6 +149,7 @@ export default {
         let requestParams = {
           refresh: refresh,
           params: {
+            include: 'plan',
             filter: {
               field: 'entity_id',
               entity: 'Modules\\User\\Entities\\Sentinel\\User'
@@ -210,7 +226,7 @@ export default {
       this.$alert.error({
         mode: 'modal',
         title: this.$tr('iplan.cms.cancelSubscription'),
-        message: plan.description,
+        message: `<span class="text-bold text-blue-grey">${plan.name}</span><br>${plan.description}`,
         actions: [
           { label: this.$tr('isite.cms.label.cancel'), color: 'grey' },
           {
