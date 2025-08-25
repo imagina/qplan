@@ -152,7 +152,7 @@ export default {
             include: 'plan',
             filter: {
               field: 'entity_id',
-              entity: 'Modules\\User\\Entities\\Sentinel\\User'
+              entity: 'Modules\\User\\Models\\Sentinel\\User'
             }
           }
         };

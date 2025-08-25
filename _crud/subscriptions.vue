@@ -58,7 +58,7 @@ export default {
         },
         delete: true,
         formLeft: {
-          entity: {value: 'Modules\\User\\Entities\\Sentinel\\User'},
+          entity: {value: 'Modules\\User\\Models\\Sentinel\\User'},
           entityId: {
             value: null,
             type: 'crud',

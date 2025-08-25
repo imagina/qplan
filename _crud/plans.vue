@@ -222,7 +222,7 @@ export default {
             props: {
               label: this.$tr('isite.cms.form.image'),
               zone: 'mainimage',
-              entity: "Modules\\Iplan\\Entities\\Plan",
+              entity: "Modules\\Iplan\\Models\\Plan",
               entityId: null
             }
           }
